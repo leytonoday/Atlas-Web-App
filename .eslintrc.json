@@ -1,3 +1,73 @@
 {
-  "extends": "next/core-web-vitals"
-}
+    "root": true, // Indicates that this is the root configuration file, and should not extend any other configuration files.
+    "env": {
+      // Specifies the environments for your code to run in.
+      "browser": true,
+      "node": true,
+      "es2021": true
+    },
+    "plugins": [
+      // Lists the ESLint plugings used in this config
+      "@typescript-eslint",
+      "eslint-plugin-tsdoc"
+    ],
+    "extends": [
+      // Extends the rules from a base configuration.
+      "next/core-web-vitals", // Next.js core web vitals
+      "eslint:recommended", // Recommended ESLint rules
+      "plugin:@typescript-eslint/recommended", // Recommended TypeScript rules
+      "plugin:jsx-a11y/recommended", // Recommended accessibility rules (to be used in combination with @axe-core/react)
+      "plugin:import/recommended", // Recommended module import rules
+      "plugin:import/typescript", // Recommended TypeScript-specific import rules
+      "plugin:react/all", // Recommended React rules
+      "plugin:tailwindcss/recommended", // Recommended TailwindCSS rules (for example, the class order?)
+      "prettier"
+    ],
+    "rules": {
+      "tsdoc/syntax": "warn", // Warns about syntax errors in TSDoc comments
+      "react/react-in-jsx-scope": "off",
+      "react/require-default-props": "off", // Disable the rule that requires default props values to be defined for non-required props
+      "react/jsx-props-no-spreading": "off", // Disable the rule that prevents the use of the spread operator on props
+      "react/function-component-definition": [
+        // Enforce function component definition to be arrow functions
+        "error",
+        {
+          "namedComponents": "arrow-function",
+          "unnamedComponents": "arrow-function"
+        }
+      ],
+      "no-underscore-dangle": "off",
+      "max-len": "120",
+      "quotes": "off",
+      "@typescript-eslint/quotes": ["error", "double"],
+      "@typescript-eslint/no-unused-vars": [
+        "error",
+        {
+          "argsIgnorePattern": "^_"
+        }
+      ],
+      "@typescript-eslint/semi": "off",
+      "import/prefer-default-export": "off",
+      "react/destructuring-assignment": "off",
+      "no-nested-ternary": "warn",
+      "operator-linebreak": "off",
+      "@typescript-eslint/no-explicit-any": "warn"
+    },
+    "overrides": [
+      {
+        // TS FILE PARSING
+        "files": ["src/**/*.ts?(x)"],
+        "parserOptions": {
+          "project": ["./tsconfig.json"]
+        }
+      },
+      {
+        // OVERRIDE RULES FOR SPECIFIC FILES
+        "files": ["example/path/file.ts(x)?"],
+        "rules": {
+          "example-rule": "off"
+        }
+      }
+    ]
+  }
+  
