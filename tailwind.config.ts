@@ -1,3 +1,4 @@
+import { PRIMARY_COLOUR, SECONDARY_COLOUR, TEXT_COLOUR } from "./src/data";
 import type { Config } from "tailwindcss";
 
 const config: Config = {
@@ -8,13 +9,22 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+      colors: {
+        "text-color": TEXT_COLOUR,
+        primary: PRIMARY_COLOUR,
+        "primary-light": PRIMARY_COLOUR + "22",
+        secondary: SECONDARY_COLOUR,
+        "secondary-light": SECONDARY_COLOUR + "99",
+      },
+      fontSize: {
+        "2xs": "0.625rem",
+        "3xs": "0.5rem",
       },
     },
   },
   plugins: [],
+  corePlugins: {
+    preflight: false, // Required to prevent Tailwind from interfering with the styling of Ant Design components
+  },
 };
 export default config;

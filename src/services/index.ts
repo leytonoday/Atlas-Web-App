@@ -2,12 +2,14 @@ import {
   IAuthenticationService,
   authenticationService,
 } from "./modules/authentication-service";
+import { IUserService, userService } from "./modules/user-service";
 
 /**
  * Defines services that interact with APIs.
  */
 export interface IServicesApi {
   authentication: IAuthenticationService;
+  user: IUserService;
 }
 
 /**
@@ -23,5 +25,6 @@ export interface IServices {
 export const services: IServices = {
   api: {
     authentication: authenticationService,
+    user: userService,
   },
 };

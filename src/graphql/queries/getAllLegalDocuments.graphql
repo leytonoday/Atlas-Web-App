@@ -1,0 +1,11 @@
+# Gets all legal documents, for the purpose of listing them in the legal documents page
+query GetAllLegalDocuments {
+  legalDocumentCollection {
+    total
+    items {
+      title
+      description
+      slug
+    }
+  }
+}

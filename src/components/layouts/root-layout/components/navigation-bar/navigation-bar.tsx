@@ -20,6 +20,7 @@ import {
 } from "react-icons/ai";
 import { useStore } from "@/store";
 import { Heading, SimpleTooltip } from "@/components/common";
+import { PiToolbox } from "react-icons/pi";
 
 /**
  * Navigation bar component. Handles the navigation bar for desktop and mobile screens.
@@ -62,7 +63,7 @@ export const NavigationBar = (): ReactNode => {
       {
         label: "Features",
         key: "/product/features",
-        icon: <IoExtensionPuzzleOutline className="mr-2 !text-base" />,
+        icon: <PiToolbox className="mr-2 !text-base" />,
       },
       {
         label: "Plans",
@@ -161,7 +162,7 @@ export const NavigationBar = (): ReactNode => {
           <div className="hidden items-center justify-center gap-1 md:flex">
             <NavigationBarDropDown
               items={productMenuItems}
-              label="Products"
+              label="Product"
               onItemClick={onMenuItemClick}
             />
 

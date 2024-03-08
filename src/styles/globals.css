@@ -2,32 +2,72 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+html,
+body,
+#root {
+  padding: 0;
+  margin: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  min-height: 100vh;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+/* Ant Design - Vertically centres the arrow on the antd collapse */
+.ant-collapse-header {
+  display: flex !important;
+  align-items: center !important;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+/* Used to make the ugly navbar nice */
+::-webkit-scrollbar {
+  width: 25px;
+  height: 25px;
+  border-radius: 1em;
+  background: rgba(0, 0, 0, 0.2);
+
+  background-clip: padding-box;
+  border: 5px solid rgba(0, 0, 0, 0);
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 1em;
+  background: #808080;
+
+  background-clip: padding-box;
+  border: 9px solid rgba(0, 0, 0, 0);
+
+  min-height: 30px;
+
+  transition: 0.3s all ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #646464;
+  background-clip: padding-box;
+  border: 9px solid rgba(0, 0, 0, 0);
+}
+
+/* Used to grey out an element, indicating that it's corresponding entity is archived */
+.archived {
+  -webkit-filter: grayscale(1);
+}
+
+/* Used to visually emphasize that certain elements are selectable */
+.selectable {
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.selectable:hover {
+  @apply bg-gray-100;
+}
+
+/* Combines a few tailwind classes to create a consistent border */
+.grey-border {
+  @apply border border-solid border-gray-200;
 }

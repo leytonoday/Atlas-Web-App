@@ -6,3 +6,4 @@ export * from "./modules/get-api-base-url";
 export * from "./modules/axios-error-to-server-response-errors";
 export * from "./modules/format-number-with-commas";
 export * from "./modules/get-currency-symbol";
+export * from "./modules/get-cms-client";

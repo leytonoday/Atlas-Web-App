@@ -10,7 +10,7 @@ export const DEV_SUPPORT_EMAIL = "support@atlas.com";
 export const PROD_SUPPORT_EMAIL = "";
 
 export const TEXT_COLOUR = "#313131";
-export const PRIMARY_COLOUR = "#1E90FF";
+export const PRIMARY_COLOUR = "#8a50c4";
 export const SECONDARY_COLOUR = "#EFEFEF";
 
 export const GOOGLE_TRACKING_ID = "";

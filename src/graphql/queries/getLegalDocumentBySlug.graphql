@@ -1,0 +1,15 @@
+# Gets a legal document and it's content by slug
+query getLegalDocumentBySlug($slug: String!) {
+  legalDocumentCollection(where: { slug: $slug }) {
+    items {
+      title
+      description
+      body {
+        json
+      }
+      sys {
+        publishedAt
+      }
+    }
+  }
+}

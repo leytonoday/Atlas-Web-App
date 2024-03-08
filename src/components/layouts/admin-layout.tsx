@@ -2,15 +2,7 @@ import { IWrapperComponentProps } from "@/types";
 import { Menu, MenuProps } from "antd";
 import { useRouter } from "next/router";
 import { useEffect, useMemo, useState } from "react";
-import {
-  AiOutlineAppstore,
-  AiOutlineCreditCard,
-  AiOutlineIdcard,
-  AiOutlineTag,
-  AiOutlineTeam,
-  AiOutlineUnlock,
-  AiOutlineUserDelete,
-} from "react-icons/ai";
+import { AiOutlineAppstore, AiOutlineTag, AiOutlineTeam } from "react-icons/ai";
 import { RootLayout } from "./root-layout/root-layout";
 
 export const AdminLayout = (props: IWrapperComponentProps) => {
