@@ -4,6 +4,7 @@ import {
 } from "./modules/authentication-service";
 import { IUserService, userService } from "./modules/user-service";
 import { IStripeService, stripeService } from "./modules/stripe-service";
+import { IPlanService, planService } from "./modules/plan-service";
 
 /**
  * Defines services that interact with APIs.
@@ -12,6 +13,7 @@ export interface IServicesApi {
   authentication: IAuthenticationService;
   user: IUserService;
   stripe: IStripeService;
+  plan: IPlanService;
 }
 
 /**
@@ -29,5 +31,6 @@ export const services: IServices = {
     authentication: authenticationService,
     user: userService,
     stripe: stripeService,
+    plan: planService,
   },
 };
