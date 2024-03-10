@@ -13,7 +13,7 @@ import { useStore } from "@/store";
  */
 export function isIServerResponse(object: any): object is IServerResponse {
   return (
-    typeof object === "object" && "errors" in object && "statusCode" in object
+    typeof object === "object" && "errors" in object && "isSuccess" in object
   );
 }
 

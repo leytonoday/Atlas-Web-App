@@ -71,7 +71,7 @@ export default function ResetPassword(props: IResetPasswordProps) {
         services.api.user.resetPassword({
           username: props.username!,
           token: props.token!,
-          password: getFormValues().password,
+          newPassword: getFormValues().password,
         }),
     });
 
@@ -99,6 +99,7 @@ export default function ResetPassword(props: IResetPasswordProps) {
       await resetPassword();
       setStatus("success");
     } catch (error) {
+      debugger;
       const errors = axiosErrorToServerResponseErrors(error as AxiosError);
       if (errors[0].message.includes("password")) {
         setError("password", { message: errors[0].message });
@@ -197,6 +198,8 @@ export async function getServerSideProps(
 ): Promise<{ props: IResetPasswordProps }> {
   const token = context.query.token || "";
   const username = context.query.username || "";
+
+  console.log(token);
 
   // If the URL doesn't have a token or username, show an error
   if (!token || !username)
