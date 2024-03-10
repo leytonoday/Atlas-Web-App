@@ -1,10 +1,7 @@
 import { IServerResponseError } from "./server-response-error";
 
-export interface IServerResponse {
+export interface IServerResponse<TData = any> {
   statusCode: number;
   errors: IServerResponseError[] | null;
-}
-
-export interface IServerResponseWithData<TData> extends IServerResponse {
-  data: TData;
+  data?: TData;
 }

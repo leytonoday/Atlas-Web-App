@@ -85,19 +85,29 @@ export default function SignUp(props: ISignUpProps) {
         userName: data.username,
         email: data.email,
         password: data.password,
+        confirmPassword: data.confirmPassword,
       });
       setIsSignUpComplete(true);
     } catch (error) {
       const errors = axiosErrorToServerResponseErrors(error as AxiosError);
 
       // If an error includes the name of a field, set that field's error to the error message
-      for (const field of ["username", "email", "password"]) {
+      for (const field of [
+        "UserName",
+        "Email",
+        "Password",
+        "ConfirmPassword",
+      ]) {
+        let adjustedField = field.toLowerCase();
         const error = errors.find((x) =>
-          x.message.toLowerCase().includes(field),
+          x.message.toLowerCase().includes(adjustedField),
         );
-        if (!error) continue;
 
-        setError(field as keyof FormSchema, { message: error.message });
+        if (!error) {
+          continue;
+        }
+
+        setError(adjustedField as keyof FormSchema, { message: error.message });
       }
     }
   };

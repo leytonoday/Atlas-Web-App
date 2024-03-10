@@ -5,8 +5,8 @@ import { StateCreator } from "zustand";
  * Used to store user specific data.
  */
 export interface IUserSlice {
-  whoAmI: IWhoAmI | null;
-  setWhoAmI: (whoAmI: IWhoAmI | null) => void;
+  whoAmI?: IWhoAmI;
+  setWhoAmI: (whoAmI?: IWhoAmI) => void;
 }
 
 /**
@@ -16,6 +16,6 @@ export interface IUserSlice {
  * @returns The initial state and actions for this slice.
  */
 export const userSlice: StateCreator<IUserSlice> = (set, _) => ({
-  whoAmI: null,
+  whoAmI: undefined,
   setWhoAmI: (whoAmI) => set({ whoAmI }),
 });

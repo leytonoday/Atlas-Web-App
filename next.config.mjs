@@ -1,6 +1,25 @@
+export const DEV_API_BASE_URL = "http://localhost:5154/api/1.0";
+export const PROD_API_BASE_URL = "";
+
+function getApiBaseUrl() {
+  return process.env.NODE_ENV === "development"
+    ? DEV_API_BASE_URL
+    : PROD_API_BASE_URL;
+}
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+
+  async rewrites() {
+    return [
+      {
+        source: "/api/:path*",
+        destination: `${getApiBaseUrl()}/:path*`,
+      },
+    ];
+  },
+
   transpilePackages: [
     // antd & deps
     "@ant-design",

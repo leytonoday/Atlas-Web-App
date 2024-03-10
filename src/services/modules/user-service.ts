@@ -98,14 +98,14 @@ export const userService: IUserService = {
 
   forgotPassword: async function (identifier: string) {
     const response = await axios.post<IServerResponse>(
-      `${this.baseUrl}/forgotPassword/${identifier}`,
+      `${this.baseUrl}/forgot-password/${identifier}`,
     );
     return response.data;
   },
 
   resetPassword: async function (request: IResetPasswordRequest) {
     const response = await axios.post<IServerResponse>(
-      `${this.baseUrl}/resetPassword`,
+      `${this.baseUrl}/reset-password`,
       request,
     );
     return response.data;
@@ -113,7 +113,7 @@ export const userService: IUserService = {
 
   confirmUserEmail: async function (request: IConfirmUserEmailRequest) {
     const response = await axios.post<IServerResponse>(
-      `${this.baseUrl}/confirmUserEmail`,
+      `${this.baseUrl}/confirm-email`,
       request,
     );
     return response.data;
@@ -121,7 +121,7 @@ export const userService: IUserService = {
 
   refreshConfirmEmail: async function (identifier: string) {
     const response = await axios.post<IServerResponse>(
-      `${this.baseUrl}/refreshConfirmEmail/${identifier}`,
+      `${this.baseUrl}/refresh-confirm-email/${identifier}`,
     );
     return response.data;
   },
@@ -145,7 +145,7 @@ export const userService: IUserService = {
 
   changePassword: async function (request: IChangePasswordRequest) {
     const response = await axios.put<IServerResponse>(
-      `${this.baseUrl}/changePassword`,
+      `${this.baseUrl}/change-password`,
       request,
     );
     return response.data;

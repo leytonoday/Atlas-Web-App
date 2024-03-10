@@ -4,6 +4,7 @@ import {
   IServerResponse,
   ISignInRequest,
   ISignInWithTokenRequest,
+  IWhoAmI,
 } from "@/types";
 import axios from "axios";
 import * as EmailValidator from "email-validator";
@@ -45,7 +46,7 @@ export interface IAuthenticationService extends IApiBaseService {
    * Gets the user's identifying information.
    * @returns The server response, containing the user's identifying information
    */
-  whoAmI: () => Promise<IServerResponse>;
+  whoAmI: () => Promise<IServerResponse<IWhoAmI>>;
 }
 
 export const authenticationService: IAuthenticationService = {
@@ -95,7 +96,7 @@ export const authenticationService: IAuthenticationService = {
   },
 
   whoAmI: async function () {
-    const response = await axios.get<IServerResponse>(
+    const response = await axios.get<IServerResponse<IWhoAmI>>(
       `${this.baseUrl}/who-am-i`,
     );
     return response.data;
