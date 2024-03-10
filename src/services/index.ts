@@ -5,6 +5,7 @@ import {
 import { IUserService, userService } from "./modules/user-service";
 import { IStripeService, stripeService } from "./modules/stripe-service";
 import { IPlanService, planService } from "./modules/plan-service";
+import { IFeatureService, featureService } from "./modules/feature-service";
 
 /**
  * Defines services that interact with APIs.
@@ -14,6 +15,7 @@ export interface IServicesApi {
   user: IUserService;
   stripe: IStripeService;
   plan: IPlanService;
+  feature: IFeatureService;
 }
 
 /**
@@ -32,5 +34,6 @@ export const services: IServices = {
     user: userService,
     stripe: stripeService,
     plan: planService,
+    feature: featureService,
   },
 };

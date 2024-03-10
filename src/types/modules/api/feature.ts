@@ -3,4 +3,5 @@ export interface IFeature {
   name: string;
   description?: string;
   isInheritable: boolean;
+  isHidden: boolean;
 }

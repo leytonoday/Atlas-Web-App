@@ -7,3 +7,5 @@ export * from "./modules/axios-error-to-server-response-errors";
 export * from "./modules/format-number-with-commas";
 export * from "./modules/get-currency-symbol";
 export * from "./modules/get-cms-client";
+export * from "./modules/is-valid-hex-colour";
+export * from "./modules/get-all-icons";
