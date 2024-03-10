@@ -55,13 +55,10 @@ export const authenticationService: IAuthenticationService = {
     : `${getApiBaseUrl()}/authentication`,
 
   signIn: async function (request: ISignInRequest) {
-    const isValidEmail = EmailValidator.validate(request.identifier);
-
     const response = await axios.post<IServerResponse>(
       `${this.baseUrl}/sign-in`,
       {
-        username: isValidEmail ? undefined : request.identifier,
-        email: isValidEmail ? request.identifier : undefined,
+        identifier: request.identifier,
         password: request.password,
       },
       {

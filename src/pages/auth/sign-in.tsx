@@ -5,7 +5,7 @@ import {
 } from "@/components/common";
 import { useApiQuery } from "@/hooks";
 import { services } from "@/services";
-import { IServerResponse, ISignInRequest } from "@/types";
+import { IServerResponse, ISignInRequest, serverErrorCodes } from "@/types";
 import {
   axiosErrorToServerResponseErrors,
   handleApiRequestError,
@@ -129,7 +129,7 @@ export default function SignIn() {
       const errors = axiosErrorToServerResponseErrors(error as AxiosError);
 
       // Check if the error is about email verification
-      if (errors[0]?.message.includes("confirm email"))
+      if (errors[0]?.code === serverErrorCodes.user.MustVerifyEmail)
         setEmailVerificationRequired(true);
       else {
         // If not, then it'll be an error about incorrect credentials

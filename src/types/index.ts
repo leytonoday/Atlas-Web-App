@@ -27,3 +27,5 @@ export * from "./modules/api/update-user-request";
 export * from "./modules/api/user";
 export * from "./modules/api/who-am-i";
 export * from "./modules/api/reset-password-request";
+
+export * from "./modules/server-error-codes";
