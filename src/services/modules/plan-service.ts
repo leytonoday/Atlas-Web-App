@@ -124,7 +124,7 @@ export const planService: IPlanService = {
 
   addFeature: async function (planFeature: IPlanFeature) {
     const response = await axios.post<IServerResponse>(
-      `${this.baseUrl}/${planFeature.planId}/features`,
+      `${this.baseUrl}/features`,
       planFeature,
     );
     return response.data;
@@ -132,7 +132,7 @@ export const planService: IPlanService = {
 
   removeFeature: async function (planFeature: IPlanFeature) {
     const response = await axios.delete<IServerResponse>(
-      `${this.baseUrl}/${planFeature.planId}/features`,
+      `${this.baseUrl}/features`,
       {
         data: planFeature,
       },
@@ -142,7 +142,7 @@ export const planService: IPlanService = {
 
   updateFeature: async function (planFeature: IPlanFeature) {
     const response = await axios.put<IServerResponse>(
-      `${this.baseUrl}/${planFeature.planId}/features`,
+      `${this.baseUrl}/features`,
       planFeature,
     );
     return response.data;

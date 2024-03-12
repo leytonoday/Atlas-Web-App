@@ -130,24 +130,19 @@ export const PlanCard = (props: IPlanCardProps) => {
    * Returns the labels of the features that are included in the plan
    */
   const getPlanFeatureLabels = () => {
+    if (!props.plan.features || !props.plan.planFeatures) {
+      return [];
+    }
+
     let planFeatureLabels: string[] = [];
 
-    // A plan's features include it's own features and the features of it's parent plan.
-    // We need to get the features that are assigned to only this plan.
-    const nonInheritedPlanFeatures =
-      props.plan.planFeatures?.filter((x) => x.planId === props.plan.id) || [];
+    for (let i = 0; i < props.plan.features.length; i++) {
+      const feature = props.plan.features[i];
+      const planFeature = props.plan.planFeatures.find(
+        (x) => x.featureId === feature.id,
+      );
 
-    // Get the features that are assigned to only this plan.
-    const nonInheritedFeatures =
-      props.plan?.features?.filter((x) =>
-        nonInheritedPlanFeatures?.find((y) => y.featureId === x.id),
-      ) || [];
-
-    for (let i = 0; i < nonInheritedFeatures.length; i++) {
-      const feature = nonInheritedFeatures[i];
-      const planFeature = nonInheritedPlanFeatures[i];
-
-      if (planFeature.value) {
+      if (planFeature?.value) {
         planFeatureLabels.push(
           `${feature.name}: ${formatFeatureValue(planFeature.value)}`,
         );

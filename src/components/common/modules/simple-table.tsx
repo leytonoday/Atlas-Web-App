@@ -1,6 +1,5 @@
 import { SECONDARY_COLOUR } from "@/data";
 import { Divider, Empty, Spin } from "antd";
-import clsx from "clsx";
 
 /**
  * Represents a column in the SimpleTable component.

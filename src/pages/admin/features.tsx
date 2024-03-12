@@ -216,7 +216,7 @@ export default function Features() {
     reset({
       id: "",
       name: "",
-      isInheritable: false,
+      isInheritable: true,
       description: "",
       isHidden: false,
     });

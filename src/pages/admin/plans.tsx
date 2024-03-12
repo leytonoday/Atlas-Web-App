@@ -118,10 +118,14 @@ export default function Plans() {
       <ManagePlanFeatures
         isOpen={isManageFeaturesDrawerOpen}
         plan={selectedPlan}
-        onClose={() => {
+        onClose={(editsMade: boolean) => {
           setIsManageFeaturesDrawerOpen(false);
           setSelectedPlan(null);
-          queryClient.invalidateQueries(["allPlans"]);
+
+          // If anything changed, refetch the plans
+          if (editsMade) {
+            queryClient.invalidateQueries(["allPlans"]);
+          }
         }}
         onSubmit={() => {
           setIsManageFeaturesDrawerOpen(false);

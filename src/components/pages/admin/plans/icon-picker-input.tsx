@@ -11,7 +11,7 @@ import {
   Merge,
 } from "react-hook-form";
 import { DynamicIcon } from "@/components/common";
-// import { getAllIcons } from "@/utils";
+import { getAllIcons } from "@/utils";
 
 interface IIconPickerInputProps {
   /**
@@ -43,7 +43,7 @@ export const IconPickerInput = (props: IIconPickerInputProps) => {
   const [search, setSearch] = useState("");
   const { token: themeToken } = theme.useToken();
 
-  const allIcons = useMemo(() => [], []);
+  const allIcons = useMemo(() => getAllIcons(), []);
   const [pageSize, setPageSize] = useState(100);
 
   const [displayedIcons, setDisplayedIcons] = useState(
@@ -52,8 +52,9 @@ export const IconPickerInput = (props: IIconPickerInputProps) => {
   );
 
   const loadMore = useCallback(() => {
-    setDisplayedIcons(Object.keys(allIcons).slice(0, pageSize));
-    setPageSize(pageSize + 100);
+    const newPageSize = pageSize + 100;
+    setDisplayedIcons(Object.keys(allIcons).slice(0, newPageSize));
+    setPageSize(newPageSize);
   }, [displayedIcons, pageSize]);
 
   const searchIcons = useCallback((input: string) => {

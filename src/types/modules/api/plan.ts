@@ -20,4 +20,7 @@ export interface IPlan {
 
   planFeatures?: IPlanFeature[];
   features?: IFeature[];
+
+  inheritedPlanFeatures?: IPlanFeature[];
+  inheritedFeatures?: IFeature[];
 }

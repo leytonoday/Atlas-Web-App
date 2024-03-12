@@ -46,8 +46,9 @@ interface IManagePlanFeaturesProps {
 
   /**
    * Callback fired when the drawer is closed.
+   * @param editsMade Whether or not edits were made whilst the drawer was open.
    */
-  onClose: () => void;
+  onClose: (editsMade: boolean) => void;
 
   /**
    * Callback fired when the form is submitted.
@@ -62,6 +63,8 @@ export const ManagePlanFeatures = (props: IManagePlanFeaturesProps) => {
   const [selectedPlanFeatureId, setSelectedPlanFeatureId] = useState<
     string | null
   >(null);
+
+  const [editsMade, setEditsMade] = useState<boolean>(false);
 
   // Form
   const {
@@ -97,6 +100,7 @@ export const ManagePlanFeatures = (props: IManagePlanFeaturesProps) => {
       }
 
       setSelectedPlanFeatureId(null);
+      setEditsMade(true);
       resetForm();
     } catch (e) {
       handleApiRequestError(e);
@@ -110,6 +114,7 @@ export const ManagePlanFeatures = (props: IManagePlanFeaturesProps) => {
     }
 
     resetForm();
+    setEditsMade(false);
     setSelectedPlanFeatureId(null);
   }, [props.isOpen]);
 
@@ -123,6 +128,13 @@ export const ManagePlanFeatures = (props: IManagePlanFeaturesProps) => {
     queryKey: ["planFeatures", props.plan?.id],
     enabled: props.plan?.id !== undefined && props.isOpen,
   });
+
+  const planFeaturesWithInherited = useMemo(() => {
+    const inheritedPlanFeatures = props.plan?.inheritedPlanFeatures ?? [];
+    inheritedPlanFeatures.forEach((feature) => (feature.isInherited = true));
+
+    return planFeatures?.concat(inheritedPlanFeatures);
+  }, [planFeatures]);
 
   const { data: allFeatures, isLoading: isAllFeaturesLoading } = useApiQuery<
     IFeature[]
@@ -146,6 +158,7 @@ export const ManagePlanFeatures = (props: IManagePlanFeaturesProps) => {
       async onOk() {
         try {
           await removePlanFeature(planFeature);
+          setEditsMade(true);
         } catch (e) {
           handleApiRequestError(e);
         }
@@ -156,9 +169,9 @@ export const ManagePlanFeatures = (props: IManagePlanFeaturesProps) => {
   // Filter out features that are already added to the plan
   const featureSelectOptions = useMemo(() => {
     return allFeatures?.filter(
-      (x) => !planFeatures?.find((y) => y.featureId === x.id),
+      (x) => !planFeaturesWithInherited?.find((y) => y.featureId === x.id),
     );
-  }, [allFeatures, selectedPlanFeatureId]);
+  }, [allFeatures, selectedPlanFeatureId, planFeaturesWithInherited]);
 
   const { mutate: addPlanFeature, isLoading: isAddPlanFeatureLoading } =
     useMutation({
@@ -205,7 +218,7 @@ export const ManagePlanFeatures = (props: IManagePlanFeaturesProps) => {
 
   /**
    * Begins the process of editing a plan feature.
-   * @param feature
+   * @param feature The plan feature to edit.
    */
   const startEditing = (feature: IPlanFeature) => {
     resetForm({
@@ -373,7 +386,7 @@ export const ManagePlanFeatures = (props: IManagePlanFeaturesProps) => {
       title={"Manage Plan Features: " + (props.plan?.name ?? "")}
       placement="right"
       onClose={() => {
-        props.onClose();
+        props.onClose(editsMade);
       }}
       open={props.isOpen}
       width="50%"
@@ -390,7 +403,7 @@ export const ManagePlanFeatures = (props: IManagePlanFeaturesProps) => {
 
       <SimpleTable
         columns={columns}
-        dataSource={planFeatures ?? []}
+        dataSource={planFeaturesWithInherited ?? []}
         isLoading={isLoading}
         selectedRowId={selectedPlanFeatureId}
         rowKey="featureId"
