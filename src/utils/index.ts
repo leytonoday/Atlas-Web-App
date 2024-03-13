@@ -9,3 +9,5 @@ export * from "./modules/get-currency-symbol";
 export * from "./modules/get-cms-client";
 export * from "./modules/is-valid-hex-colour";
 export * from "./modules/get-all-icons";
+export * from "./modules/is-development-mode";
+export * from "./modules/get-support-email";
