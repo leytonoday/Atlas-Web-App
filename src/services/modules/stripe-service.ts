@@ -167,9 +167,7 @@ export const stripeService: IStripeService = {
 
   getMyPaymentMethods: async function (): Promise<IServerResponse> {
     const response = (
-      await axios.get<IServerResponse>(
-        `${this.baseUrl}/my-subscription/payment-methods`,
-      )
+      await axios.get<IServerResponse>(`${this.baseUrl}/payment-methods`)
     ).data;
     return response;
   },
@@ -205,7 +203,7 @@ export const stripeService: IStripeService = {
   getMyUpcomingInvoice: async function (): Promise<IServerResponse> {
     const response = (
       await axios.get<IServerResponse>(
-        `${this.baseUrl}/my-subscription/upcomingInvoice`,
+        `${this.baseUrl}/my-subscription/upcoming-invoice`,
       )
     ).data;
     return response;
