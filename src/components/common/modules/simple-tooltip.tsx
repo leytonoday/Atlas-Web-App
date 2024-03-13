@@ -16,12 +16,21 @@ interface ISimpleTooltipProps extends IWrapperComponentProps {
    * The delay before the tooltip is shown, in seconds. Defaults to 0.3
    */
   delay?: number;
+
+  /**
+   * Whether the tooltip is disabled. Defaults to false
+   */
+  disabled?: boolean;
 }
 
 /**
  * A wrapper around the Ant Design Tooltip component that makes it easier to use
  */
 export const SimpleTooltip = (props: ISimpleTooltipProps) => {
+  if (props.disabled) {
+    return props.children;
+  }
+
   return (
     <Tooltip
       className={props.className}

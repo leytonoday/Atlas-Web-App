@@ -312,7 +312,7 @@ export const ManagePlanFeatures = (props: IManagePlanFeaturesProps) => {
       title: "Actions",
       render: (record: IPlanFeature) => (
         <div className="flex gap-2">
-          <SimpleTooltip text="Edit">
+          <SimpleTooltip text="Edit" disabled={record.isInherited}>
             <Button
               disabled={
                 isLoading ||
@@ -326,7 +326,7 @@ export const ManagePlanFeatures = (props: IManagePlanFeaturesProps) => {
               <AiOutlineEdit />
             </Button>
           </SimpleTooltip>
-          <SimpleTooltip text="Remove">
+          <SimpleTooltip text="Remove" disabled={record.isInherited}>
             <Button
               disabled={
                 isLoading ||

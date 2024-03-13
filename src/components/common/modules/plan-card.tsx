@@ -138,6 +138,10 @@ export const PlanCard = (props: IPlanCardProps) => {
 
     for (let i = 0; i < props.plan.features.length; i++) {
       const feature = props.plan.features[i];
+      if (feature.isHidden) {
+        continue;
+      }
+
       const planFeature = props.plan.planFeatures.find(
         (x) => x.featureId === feature.id,
       );
