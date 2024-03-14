@@ -2,6 +2,7 @@ import { getApiBaseUrl, isOnClient } from "@/utils";
 import { IApiBaseService } from "../api-base.service";
 import {
   IAttachPaymentMethodRequest,
+  ICreateOrUpdateSubscriptionRequest,
   IInvoiceHistoryRequest,
   IServerResponse,
 } from "@/types";
@@ -115,6 +116,24 @@ export interface IStripeService extends IApiBaseService {
    * @returns The server response, containing the Stripe publishable key
    */
   getPublishableKey: () => Promise<IServerResponse>;
+
+  /**
+   * Subscribes the current user to the Plan with the given ID
+   * @param request The request, containing the Plan ID
+   * @returns The server response
+   */
+  createSubscription: (
+    request: ICreateOrUpdateSubscriptionRequest,
+  ) => Promise<IServerResponse>;
+
+  /**
+   * Updates the current user's subscription to the Plan with the given ID. This could be an upgrade or a downgrade.
+   * @param request The request, containing the Plan ID
+   * @returns The server response
+   */
+  updateSubscription: (
+    request: ICreateOrUpdateSubscriptionRequest,
+  ) => Promise<IServerResponse>;
 }
 
 export const stripeService: IStripeService = {
@@ -262,6 +281,26 @@ export const stripeService: IStripeService = {
   getPublishableKey: async function () {
     const response = await axios.get<IServerResponse>(
       `${this.baseUrl}/publishable-key`,
+    );
+    return response.data;
+  },
+
+  createSubscription: async function (
+    request: ICreateOrUpdateSubscriptionRequest,
+  ) {
+    const response = await axios.post<IServerResponse>(
+      `${this.baseUrl}/subscription`,
+      request,
+    );
+    return response.data;
+  },
+
+  updateSubscription: async function (
+    request: ICreateOrUpdateSubscriptionRequest,
+  ) {
+    const response = await axios.put<IServerResponse>(
+      `${this.baseUrl}/subscription`,
+      request,
     );
     return response.data;
   },

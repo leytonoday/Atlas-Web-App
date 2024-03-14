@@ -1,12 +1,7 @@
 import { getApiBaseUrl, isOnClient } from "@/utils";
 import { IApiBaseService } from "../api-base.service";
 import axios from "axios";
-import {
-  IPlan,
-  IPlanFeature,
-  IServerResponse,
-  ICreateOrUpdateSubscriptionRequest,
-} from "@/types";
+import { IPlan, IPlanFeature, IServerResponse } from "@/types";
 
 /**
  * For all Plan related API calls. A "Plan" is a subscription tier that a User can subscribe to, to gain access to the application.
@@ -62,24 +57,6 @@ export interface IPlanService extends IApiBaseService {
    * @returns The server response
    */
   updateFeature: (planFeature: IPlanFeature) => Promise<IServerResponse>;
-
-  /**
-   * Subscribes the current user to the Plan with the given ID
-   * @param request The request, containing the Plan ID
-   * @returns The server response
-   */
-  createSubscription: (
-    request: ICreateOrUpdateSubscriptionRequest,
-  ) => Promise<IServerResponse>;
-
-  /**
-   * Updates the current user's subscription to the Plan with the given ID. This could be an upgrade or a downgrade.
-   * @param request The request, containing the Plan ID
-   * @returns The server response
-   */
-  updateSubscription: (
-    request: ICreateOrUpdateSubscriptionRequest,
-  ) => Promise<IServerResponse>;
 
   /**
    * Gets the Plan with the given ID
@@ -144,26 +121,6 @@ export const planService: IPlanService = {
     const response = await axios.put<IServerResponse>(
       `${this.baseUrl}/features`,
       planFeature,
-    );
-    return response.data;
-  },
-
-  createSubscription: async function (
-    request: ICreateOrUpdateSubscriptionRequest,
-  ) {
-    const response = await axios.post<IServerResponse>(
-      `${this.baseUrl}/subscription`,
-      request,
-    );
-    return response.data;
-  },
-
-  updateSubscription: async function (
-    request: ICreateOrUpdateSubscriptionRequest,
-  ) {
-    const response = await axios.put<IServerResponse>(
-      `${this.baseUrl}/subscription`,
-      request,
     );
     return response.data;
   },

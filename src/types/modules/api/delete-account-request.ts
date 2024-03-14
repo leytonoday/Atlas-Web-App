@@ -1,5 +1,4 @@
 export interface IDeleteAccountRequest {
-  email: string;
-  userName: string;
+  userId: string;
   password?: string;
 }

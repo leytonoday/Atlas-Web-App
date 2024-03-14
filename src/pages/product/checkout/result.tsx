@@ -1,4 +1,3 @@
-import Head from "next/head";
 import { Result } from "antd";
 import { useEffect } from "react";
 import { useRouter } from "next/router";

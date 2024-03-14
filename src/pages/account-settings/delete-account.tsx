@@ -36,8 +36,7 @@ export default function DeleteAccount() {
     mutationFn: () =>
       services.api.user.deleteAccount({
         password: getValues().password,
-        email: store.whoAmI?.email! || "",
-        userName: store.whoAmI?.userName! || "",
+        userId: store.whoAmI?.id || "",
       }),
     onSuccess: () => {
       router.push("/auth/sign-out");

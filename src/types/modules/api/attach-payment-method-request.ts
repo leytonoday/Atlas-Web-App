@@ -1,4 +1,5 @@
 export interface IAttachPaymentMethodRequest {
-  paymentMethodId: string;
+  userId: string;
+  stripePaymentMethodId: string;
   setAsDefaultPaymentMethod: boolean;
 }
