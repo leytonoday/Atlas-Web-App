@@ -2,7 +2,12 @@ import { SimpleControlledInput, SimpleHead } from "@/components/common";
 import { useIsMobileScreen } from "@/hooks";
 import { services } from "@/services";
 import { useStore } from "@/store";
-import { axiosErrorToServerResponseErrors, getSupportEmail } from "@/utils";
+import { NotificationStatus } from "@/types";
+import {
+  axiosErrorToServerResponseErrors,
+  getSupportEmail,
+  signOut,
+} from "@/utils";
 import { useMutation } from "@tanstack/react-query";
 import { Button, Card } from "antd";
 import { AxiosError } from "axios";
@@ -38,8 +43,16 @@ export default function DeleteAccount() {
         password: getValues().password,
         userId: store.whoAmI?.id || "",
       }),
-    onSuccess: () => {
-      router.push("/auth/sign-out");
+    onSuccess: async () => {
+      const signOutResult = await signOut();
+      if (signOutResult) {
+        router.push("/");
+      } else {
+        store.notification.enqueue({
+          status: NotificationStatus.Error,
+          description: "Failed to sign out",
+        });
+      }
     },
     onError: (e) => {
       const errors = axiosErrorToServerResponseErrors(e as AxiosError);

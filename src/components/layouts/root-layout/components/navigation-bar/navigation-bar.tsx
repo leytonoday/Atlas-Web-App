@@ -21,7 +21,8 @@ import {
 import { useStore } from "@/store";
 import { Heading, SimpleTooltip } from "@/components/common";
 import { PiToolbox } from "react-icons/pi";
-import { UserRole } from "@/types";
+import { NotificationStatus, UserRole } from "@/types";
+import { signOut } from "@/utils";
 
 /**
  * Navigation bar component. Handles the navigation bar for desktop and mobile screens.
@@ -189,7 +190,22 @@ export const NavigationBar = (): ReactNode => {
               <Dropdown
                 menu={{
                   items: accountMenuItems,
-                  onClick: onMenuItemClick,
+                  onClick: async (menuInfo) => {
+                    if (menuInfo.key === "/auth/sign-out") {
+                      const signOutResult = await signOut();
+                      if (signOutResult) {
+                        setTimeout(() => {
+                          router.push("/");
+                        }, 2000);
+                      } else {
+                        store.notification.enqueue({
+                          status: NotificationStatus.Error,
+                          description: "Failed to sign out",
+                        });
+                      }
+                    }
+                    onMenuItemClick(menuInfo);
+                  },
                 }}
                 placement="bottomRight"
               >
