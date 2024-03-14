@@ -69,15 +69,18 @@ export async function middleware(request: NextRequest) {
       }
     }
 
-    // If the user is going to the checkout page, check if the user is an admin. If so, redirect to the admin page.
-    // Admins cannot checkout
-    if (request.nextUrl.pathname.startsWith("/product/checkout")) {
+    // If the user is going to the checkout page or account settings, check if the user is an admin. If so, redirect to the 403
+    // Admins cannot checkout or access account settings
+    if (
+      request.nextUrl.pathname.startsWith("/product/checkout") ||
+      request.nextUrl.pathname.startsWith("/account-settings")
+    ) {
       // Roles Check
       const roles = await getUserRoles(headers);
 
-      // If the user is an admin, redirect to the admin page
+      // If the user is an admin, redirect to 403
       if (roles.includes(UserRole.Administrator)) {
-        return NextResponse.rewrite(new URL("/admin/plans", request.url));
+        return NextResponse.rewrite(new URL("/403", request.url));
       }
     }
   } catch (error) {
