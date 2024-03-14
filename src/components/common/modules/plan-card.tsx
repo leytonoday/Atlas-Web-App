@@ -1,4 +1,9 @@
-import { IPlan, PricingMode, StripeSubscriptionStatus } from "@/types";
+import {
+  IPlan,
+  PricingMode,
+  StripeSubscriptionStatus,
+  UserRole,
+} from "@/types";
 import { Button, Tag, theme } from "antd";
 import { useStore } from "@/store";
 import { SECONDARY_COLOUR, TEXT_COLOUR } from "@/data";
@@ -106,7 +111,7 @@ export const PlanCard = (props: IPlanCardProps) => {
     }
 
     // User is an admin, so redirect to admin plans page
-    if (store.whoAmI.roles.includes("Administrator")) {
+    if (store.whoAmI.roles.includes(UserRole.Administrator)) {
       return "/admin/plans";
     }
 

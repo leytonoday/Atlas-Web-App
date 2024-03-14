@@ -29,3 +29,4 @@ export * from "./modules/api/who-am-i";
 export * from "./modules/api/reset-password-request";
 
 export * from "./modules/server-error-codes";
+export * from "./modules/user-roles";

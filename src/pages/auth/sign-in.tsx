@@ -5,7 +5,12 @@ import {
 } from "@/components/common";
 import { useApiQuery } from "@/hooks";
 import { services } from "@/services";
-import { IServerResponse, ISignInRequest, serverErrorCodes } from "@/types";
+import {
+  IServerResponse,
+  ISignInRequest,
+  UserRole,
+  serverErrorCodes,
+} from "@/types";
 import {
   axiosErrorToServerResponseErrors,
   handleApiRequestError,
@@ -104,7 +109,7 @@ export default function SignIn() {
       );
 
       // If the user is an admin, then redirect them to the admin dashboard
-      if (whoAmI.roles.includes("Administrator")) {
+      if (whoAmI.roles.includes(UserRole.Administrator)) {
         router.push("/admin/plans");
         return;
       }

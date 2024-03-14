@@ -21,6 +21,7 @@ import {
 import { useStore } from "@/store";
 import { Heading, SimpleTooltip } from "@/components/common";
 import { PiToolbox } from "react-icons/pi";
+import { UserRole } from "@/types";
 
 /**
  * Navigation bar component. Handles the navigation bar for desktop and mobile screens.
@@ -34,7 +35,7 @@ export const NavigationBar = (): ReactNode => {
   const [isDrawerOpen, setIsDrawerOpen] = useState<boolean>(false);
 
   const isUserAdmin = store.whoAmI
-    ? store.whoAmI.roles.includes("Administrator")
+    ? store.whoAmI.roles.includes(UserRole.Administrator)
     : false;
 
   /**
@@ -92,22 +93,24 @@ export const NavigationBar = (): ReactNode => {
 
   const accountMenuItems = useMemo<MenuProps["items"]>(
     () => [
-      {
-        label: "Account Settings",
-        type: "group",
-        children: [
-          {
-            label: "Account information",
-            key: "/account-settings/account-information",
-            icon: <AiOutlineIdcard className="mr-2 !text-base" />,
+      isUserAdmin
+        ? null
+        : {
+            label: "Account Settings",
+            type: "group",
+            children: [
+              {
+                label: "Account information",
+                key: "/account-settings/account-information",
+                icon: <AiOutlineIdcard className="mr-2 !text-base" />,
+              },
+              {
+                label: "Manage subscription",
+                key: "/account-settings/manage-subscription",
+                icon: <AiOutlineCreditCard className="mr-2 !text-base" />,
+              },
+            ],
           },
-          {
-            label: "Manage subscription",
-            key: "/account-settings/manage-subscription",
-            icon: <AiOutlineCreditCard className="mr-2 !text-base" />,
-          },
-        ],
-      },
       !isUserAdmin
         ? null
         : {

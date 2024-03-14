@@ -4,7 +4,7 @@ import { MyPlan } from "@/components/pages/account-settings/my-plan/my-plan";
 import { PaymentMethods } from "@/components/pages/account-settings/payement-methods";
 import { useApiQuery, useLoadingCombinator, useWhoAmI } from "@/hooks";
 import { services } from "@/services";
-import { IStripePaymentMethod, IWhoAmI } from "@/types";
+import { IStripePaymentMethod, IWhoAmI, UserRole } from "@/types";
 import { useRouter } from "next/router";
 
 export default function ManageSubscription() {
@@ -14,7 +14,7 @@ export default function ManageSubscription() {
   useWhoAmI({
     onSuccess: (response) => {
       const whoAmI = response.data as IWhoAmI;
-      if (whoAmI.roles.includes("Administrator")) {
+      if (whoAmI.roles.includes(UserRole.Administrator)) {
         router.push("/admin/dashboard");
       }
     },
