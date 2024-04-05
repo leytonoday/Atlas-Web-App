@@ -134,7 +134,7 @@ export default function Checkout() {
   const { data: amIEligibleForTrial, isLoading: amIEligibleForTrialLoading } =
     useApiQuery<boolean>({
       queryKey: ["amIEligibleForTrial"],
-      queryFn: () => services.api.user.amIEligibleForTrial(),
+      queryFn: () => services.api.stripe.amIEligibleForTrial(),
       enabled: !!store?.whoAmI && !!planId && !!interval,
     });
 

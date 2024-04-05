@@ -134,6 +134,13 @@ export interface IStripeService extends IApiBaseService {
   updateSubscription: (
     request: ICreateOrUpdateSubscriptionRequest,
   ) => Promise<IServerResponse>;
+
+  /**
+   * Determines if the user is eligible for a trial or not
+   * @param cookie The user's cookie
+   * @returns The server response, containing a boolean indicating if the user is eligible for a trial or not
+   */
+  amIEligibleForTrial: (cookie?: string) => Promise<IServerResponse>;
 }
 
 export const stripeService: IStripeService = {
@@ -301,6 +308,18 @@ export const stripeService: IStripeService = {
     const response = await axios.put<IServerResponse>(
       `${this.baseUrl}/subscription`,
       request,
+    );
+    return response.data;
+  },
+
+  amIEligibleForTrial: async function (cookie?: string) {
+    const response = await axios.get<IServerResponse>(
+      `${this.baseUrl}/trial/eligible`,
+      {
+        headers: {
+          cookie: cookie,
+        },
+      },
     );
     return response.data;
   },

@@ -107,7 +107,7 @@ export async function getServerSideProps(
   const response =
     (await Promise.allSettled([
       services.api.plan.getAllPlans(false),
-      services.api.user.amIEligibleForTrial(cookie),
+      services.api.stripe.amIEligibleForTrial(cookie),
     ])) || [];
 
   const [plans, amIEligibleForTrial] = response.map(

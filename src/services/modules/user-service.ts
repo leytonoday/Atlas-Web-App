@@ -60,13 +60,6 @@ export interface IUserService extends IApiBaseService {
   updateUser: (request: IUpdateUserRequest) => Promise<IServerResponse>;
 
   /**
-   * Determines if the user is eligible for a trial or not
-   * @param cookie The user's cookie
-   * @returns The server response, containing a boolean indicating if the user is eligible for a trial or not
-   */
-  amIEligibleForTrial: (cookie?: string) => Promise<IServerResponse>;
-
-  /**
    * Changes the user's password
    * @param request The change password request
    * @returns The server response
@@ -128,18 +121,6 @@ export const userService: IUserService = {
 
   updateUser: async function (request: IUpdateUserRequest) {
     const response = await axios.put<IServerResponse>(this.baseUrl, request);
-    return response.data;
-  },
-
-  amIEligibleForTrial: async function (cookie?: string) {
-    const response = await axios.get<IServerResponse>(
-      `${this.baseUrl}/trial/eligible`,
-      {
-        headers: {
-          cookie: cookie,
-        },
-      },
-    );
     return response.data;
   },
 
