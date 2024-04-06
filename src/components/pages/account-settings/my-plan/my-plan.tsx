@@ -120,7 +120,7 @@ export const MyPlan = (props: IMyPlanProps) => {
 
   // Cancel subscription immediately
   const { mutateAsync: cancelMySubscriptionImmediately } = useMutation({
-    mutationFn: () => services.api.stripe.cancelMySubscriptionImmediately(),
+    mutationFn: () => services.api.stripe.cancelMySubscription(),
     onSuccess: async () => {
       refetchMySubscription();
       await refetchMyPlanUntilChanged();

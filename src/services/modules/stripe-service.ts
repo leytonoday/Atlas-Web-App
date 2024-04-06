@@ -29,16 +29,10 @@ export interface IStripeService extends IApiBaseService {
   ) => Promise<IServerResponse>;
 
   /**
-   * Sets the user's subscription to cancel at the end of the current billing period
+   * Sets the user's subscription to cancel at the end of the current billing period or cancels the user's subscription immediately if they're on a trial
    * @returns The server response
    */
   cancelMySubscription: () => Promise<IServerResponse>;
-
-  /**
-   * Sets the user's subscription to cancel immediately, rather than at the end of the current billing period
-   * @returns The server response
-   */
-  cancelMySubscriptionImmediately: () => Promise<IServerResponse>;
 
   /**
    * Reactivates the user's subscription. Effectively undoes the effect of cancelMySubscription
@@ -177,15 +171,6 @@ export const stripeService: IStripeService = {
     const response = (
       await axios.post<IServerResponse>(
         `${this.baseUrl}/my-subscription/cancel`,
-      )
-    ).data;
-    return response;
-  },
-
-  cancelMySubscriptionImmediately: async function (): Promise<IServerResponse> {
-    const response = (
-      await axios.post<IServerResponse>(
-        `${this.baseUrl}/my-subscription/cancel-immediately`,
       )
     ).data;
     return response;
