@@ -1,6 +1,6 @@
 export enum UserErrorCodes {
   InvalidCredentials = "User.InvalidCredentials",
-  MustVerifyEmail = "User.MustVerifyEmail",
+  MustVerifyEmail = "User.EmailMustBeVerifiedBusinessRule",
   OldPasswordMustBeProvidedCorrectlyBusinessRule = "User.OldPasswordMustBeProvidedCorrectlyBusinessRule",
 }
 
