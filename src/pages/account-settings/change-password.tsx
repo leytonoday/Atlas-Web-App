@@ -2,7 +2,7 @@ import { SimpleControlledInput, SimpleHead } from "@/components/common";
 import { useIsMobileScreen } from "@/hooks";
 import { services } from "@/services";
 import { useStore } from "@/store";
-import { NotificationStatus } from "@/types";
+import { NotificationStatus, serverErrorCodes } from "@/types";
 import {
   axiosErrorToServerResponseErrors,
   handleApiRequestError,
@@ -64,7 +64,10 @@ export default function ChangePassword() {
       const error = axiosErrorToServerResponseErrors(e as AxiosError).shift();
 
       if (error?.message) {
-        if (error?.message.includes("Incorrect"))
+        if (
+          error?.code ===
+          serverErrorCodes.user.OldPasswordMustBeProvidedCorrectlyBusinessRule
+        )
           setError("oldPassword", { message: error.message });
         else {
           setError("newPassword", { message: error?.message });
