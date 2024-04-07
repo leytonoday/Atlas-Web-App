@@ -138,116 +138,95 @@ export default function SignUp(props: ISignUpProps) {
         damping={0.1}
         delay={250}
       >
-        <div className="flex w-full justify-center">
-          <div className="mt-4 flex w-11/12 flex-col md:mt-16 md:flex-row lg:w-[65rem]">
-            {/* Right */}
-            <div className="flex w-full flex-col items-center justify-center rounded-t-3xl bg-secondary-light px-2 py-8 md:h-full md:w-1/2 md:rounded-l-3xl md:rounded-tr-none md:px-4">
-              <AiOutlineUserAdd className="text-7xl" />
-              <Heading level={1} className="mb-4">
-                Sign up
-              </Heading>
-              <form
-                onSubmit={handleSubmit(onSubmit)}
-                className="mt-4 flex w-11/12 flex-col items-center gap-4"
-              >
-                <SimpleControlledInput
-                  control={control}
-                  name="username"
-                  label="Username"
-                  placeholder="Enter username"
-                  formState={formState}
-                />
+        <div className="mt-16 flex flex-col items-center">
+          <AiOutlineUserAdd className="text-7xl" />
+          <Heading level={1} className="mb-4">
+            Sign up
+          </Heading>
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="mt-4 flex w-10/12 flex-col items-center gap-4 sm:w-6/12 md:w-[22rem]"
+          >
+            <SimpleControlledInput
+              control={control}
+              name="username"
+              label="Username"
+              placeholder="Enter username"
+              formState={formState}
+            />
 
-                <SimpleControlledInput
-                  control={control}
-                  name="email"
-                  label="Email"
-                  placeholder="Enter email"
-                  formState={formState}
-                />
+            <SimpleControlledInput
+              control={control}
+              name="email"
+              label="Email"
+              placeholder="Enter email"
+              formState={formState}
+            />
 
-                <SimpleControlledInput
-                  control={control}
-                  name="password"
-                  label="Password"
-                  placeholder="Enter password"
-                  formState={formState}
-                  inputType="password"
-                />
+            <SimpleControlledInput
+              control={control}
+              name="password"
+              label="Password"
+              placeholder="Enter password"
+              formState={formState}
+              inputType="password"
+            />
 
-                <SimpleControlledInput
-                  control={control}
-                  name="confirmPassword"
-                  label="Confirm password"
-                  placeholder="Confirm password"
-                  formState={formState}
-                  inputType="password"
-                />
+            <SimpleControlledInput
+              control={control}
+              name="confirmPassword"
+              label="Confirm password"
+              placeholder="Confirm password"
+              formState={formState}
+              inputType="password"
+            />
 
-                <Controller
-                  name="agreeToAll"
-                  control={control}
-                  render={({ field }) => (
-                    <Form.Item
-                      validateStatus={
-                        formState.errors.agreeToAll ? "error" : "success"
-                      }
-                      help={formState.errors?.agreeToAll?.message}
-                    >
-                      <Checkbox
-                        checked={field.value}
-                        onChange={(e) => field.onChange(e.target.checked)}
-                      >
-                        <span>I agree to the </span>
-                        {props.legalDocuments.map((link, index) => (
-                          <span key={link.slug}>
-                            <Link
-                              href={`/company/legal/${link.slug}`}
-                              key={link.slug}
-                              className="text-inherit no-underline hover:underline"
-                            >
-                              {link.title}
-                            </Link>
-                            {index !== props.legalDocuments.length - 1 && (
-                              <span>, </span>
-                            )}
-                          </span>
-                        ))}
-                      </Checkbox>
-                    </Form.Item>
-                  )}
-                />
-
-                <div className="flex w-full justify-center">
-                  <Button
-                    type="primary"
-                    htmlType="submit"
-                    disabled={!formState.isDirty}
-                    aria-label="Sign up"
-                    loading={isSignUpLoading}
+            <Controller
+              name="agreeToAll"
+              control={control}
+              render={({ field }) => (
+                <Form.Item
+                  validateStatus={
+                    formState.errors.agreeToAll ? "error" : "success"
+                  }
+                  help={formState.errors?.agreeToAll?.message}
+                >
+                  <Checkbox
+                    checked={field.value}
+                    onChange={(e) => field.onChange(e.target.checked)}
                   >
-                    Sign up
-                  </Button>
-                </div>
-              </form>
-            </div>
+                    <span>I agree to the </span>
+                    {props.legalDocuments.map((link, index) => (
+                      <span key={link.slug}>
+                        <Link
+                          href={`/company/legal/${link.slug}`}
+                          key={link.slug}
+                          className="text-inherit no-underline hover:underline"
+                        >
+                          {link.title}
+                        </Link>
+                        {index !== props.legalDocuments.length - 1 && (
+                          <span>, </span>
+                        )}
+                      </span>
+                    ))}
+                  </Checkbox>
+                </Form.Item>
+              )}
+            />
 
-            {/* Left */}
-            <div
-              className="flex h-fit w-full flex-col items-start justify-center rounded-b-3xl md:h-full md:w-1/2 md:rounded-r-3xl md:rounded-bl-none"
-              style={{
-                background:
-                  "linear-gradient(90deg, rgba(138, 80, 196, 1) 0%, rgba(194, 152, 237, 0.9) 100%)",
-              }}
-            >
-              <div className="flex-1 px-6 py-2 text-white">
-                <Heading level={3}>Benefits</Heading>
-                <Heading level={5} className="-mt-5">
-                  AI Assisted Learning
-                </Heading>
-              </div>
+            <div className="flex w-full justify-center">
+              <Button
+                type="primary"
+                htmlType="submit"
+                disabled={!formState.isDirty}
+                aria-label="Sign up"
+                loading={isSignUpLoading}
+              >
+                Sign up
+              </Button>
             </div>
-          </div>
+          </form>
         </div>
       </SimpleSlideFade>
 
