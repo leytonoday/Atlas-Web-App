@@ -9,13 +9,13 @@ const variants = {
     opacity: 1,
     scale: 1,
     transition: {
-      duration: 0.5,
+      duration: 0.25,
       delay: 0.5,
     },
   },
   out: {
     opacity: 0,
-    scale: 0.95,
+    scale: 0.97,
     transition: {
       duration: 0.25,
     },
@@ -31,7 +31,7 @@ export const PageTransition = (props: IWrapperComponentProps): ReactNode => {
   return (
     <AnimatePresence>
       <motion.div
-        className={twMerge(props.className, "h-full w-full")}
+        className={twMerge(props.className, "w-full")}
         key={asPath}
         variants={variants}
         animate="in"

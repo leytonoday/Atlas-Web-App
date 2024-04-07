@@ -4,6 +4,8 @@ import { useRouter } from "next/router";
 import { useCallback } from "react";
 import { AccountSettingsLayout } from "./account-settings-layout";
 import { AdminLayout } from "./admin-layout";
+import { AppLayout } from "./app-layout";
+import { PageTransition } from "./root-layout/components/page-transition";
 
 /**
  * This component is responsible for resolving the layout to be used based on the current route.
@@ -19,15 +21,21 @@ export const LayoutResolver = (props: IWrapperComponentProps) => {
    */
   const routeToLayout = useCallback(() => {
     // If the route is account-settings, use the AccountSettingsLayout
-    if (router.pathname.includes("account-settings")) {
+    if (router.pathname.startsWith("/account-settings")) {
       return AccountSettingsLayout;
-    } else if (router.pathname.includes("admin")) {
+    } else if (router.pathname.startsWith("/admin")) {
       return AdminLayout;
+    } else if (router.pathname.startsWith("/app")) {
+      return AppLayout;
     }
     return RootLayout;
   }, [router.pathname]);
 
   const Layout = routeToLayout();
 
-  return <Layout>{props.children}</Layout>;
+  return (
+    <Layout>
+      <PageTransition>{props.children}</PageTransition>
+    </Layout>
+  );
 };

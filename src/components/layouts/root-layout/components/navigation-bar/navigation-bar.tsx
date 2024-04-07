@@ -23,6 +23,7 @@ import { Heading, SimpleTooltip } from "@/components/common";
 import { PiToolbox } from "react-icons/pi";
 import { NotificationStatus, UserRole } from "@/types";
 import { signOut } from "@/utils";
+import { GoToAppButton } from "./components/go-to-app-button";
 
 /**
  * Navigation bar component. Handles the navigation bar for desktop and mobile screens.
@@ -38,6 +39,8 @@ export const NavigationBar = (): ReactNode => {
   const isUserAdmin = store.whoAmI
     ? store.whoAmI.roles.includes(UserRole.Administrator)
     : false;
+
+  const userHasPlanId = store.whoAmI ? store.whoAmI.planId : false;
 
   /**
    * Close the drawer when the screen size is changed to desktop
@@ -152,14 +155,20 @@ export const NavigationBar = (): ReactNode => {
         role="navigation"
         className="relative z-10 flex justify-between px-4 py-2"
       >
-        <div className="flex items-center justify-center">
-          <div className="mx-4 flex h-full items-center justify-center text-xl">
+        <div className="flex items-center justify-start flex-1">
+          <div className="mx-4 flex h-full items-center justify-center text-xl gap-4 md:gap-0">
             <Link
               href="/"
               className="text-inherit no-underline hover:text-inherit"
             >
               Atlas
             </Link>
+
+            {userHasPlanId && (
+              <div className="md:hidden flex items-end w-full">
+                <GoToAppButton />
+              </div>
+            )}
           </div>
 
           {/* Drop-down menus. Displayed in desktop mode */}
@@ -175,6 +184,8 @@ export const NavigationBar = (): ReactNode => {
               label="Company"
               onItemClick={onMenuItemClick}
             />
+
+            {userHasPlanId && <GoToAppButton />}
           </div>
         </div>
 
@@ -218,9 +229,9 @@ export const NavigationBar = (): ReactNode => {
               </Dropdown>
             </div>
           ) : (
-            <Link href="/auth/sign-up">
-              <Button shape="round" type="primary" aria-label="Sign Up">
-                Sign up
+            <Link href="/auth/sign-in">
+              <Button shape="round" type="primary" aria-label="Sign In">
+                Sign in
               </Button>
             </Link>
           )}

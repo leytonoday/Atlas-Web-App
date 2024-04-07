@@ -1,7 +1,6 @@
 import React, { ReactNode } from "react";
 import NextNProgress from "nextjs-progressbar";
 import { theme } from "antd";
-import { PageTransition } from "./components/page-transition";
 import { Footer } from "./components/footer/footer";
 import { NavigationBar } from "./components/navigation-bar/navigation-bar";
 import { IWrapperComponentProps } from "@/types";
@@ -26,11 +25,9 @@ export const RootLayout = (props: IWrapperComponentProps): ReactNode => {
       <NavigationBar />
 
       <div className="flex-1">
-        <PageTransition>
-          <main role="main" className="h-full w-full">
-            {props.children}
-          </main>
-        </PageTransition>
+        <main role="main" className="h-full w-full">
+          {props.children}
+        </main>
       </div>
 
       <Footer />
