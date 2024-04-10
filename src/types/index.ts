@@ -27,6 +27,9 @@ export * from "./modules/api/update-user-request";
 export * from "./modules/api/user";
 export * from "./modules/api/who-am-i";
 export * from "./modules/api/reset-password-request";
+export * from "./modules/api/create-legal-documents-request";
+export * from "./modules/api/legal-document";
+export * from "./modules/api/legal-document-summary";
 
 export * from "./modules/server-error-codes";
 export * from "./modules/user-roles";

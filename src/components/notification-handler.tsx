@@ -46,8 +46,9 @@ export const NotificationHandler = () => {
         const notification = state.notification.queue.shift();
         state.notification.dequeue();
 
-        if (notification)
+        if (notification) {
           showNotification(notification.description, notification?.status);
+        }
       }
     });
   }, []);

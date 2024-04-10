@@ -108,9 +108,6 @@ export default function SignIn() {
         (result) => result.status === "fulfilled" && result.value.data,
       );
 
-      console.log(whoAmI);
-      console.log(mySubscription);
-
       // If the user is an admin, then redirect them to the admin dashboard
       if (whoAmI.roles.includes(UserRole.Administrator)) {
         router.push("/admin/plans", undefined, { shallow: true });

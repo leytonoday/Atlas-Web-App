@@ -38,7 +38,7 @@ export const SimpleTooltip = (props: ISimpleTooltipProps) => {
       placement={props.placement || "bottom"}
       mouseEnterDelay={props.delay || 0.3}
     >
-      {props.children}
+      <span>{props.children}</span>
     </Tooltip>
   );
 };

@@ -1,6 +1,6 @@
 import { IWrapperComponentProps } from "@/types";
+import { cn } from "@/utils";
 import { ReactNode } from "react";
-import { twMerge } from "tailwind-merge";
 
 interface IHeadingProps extends IWrapperComponentProps {
   /**
@@ -21,7 +21,7 @@ export const Heading = (props: IHeadingProps): ReactNode => {
     5: "text-sm md:text-base lg:text-lg",
   };
 
-  const completeClassName = twMerge(
+  const completeClassName = cn(
     sizeClasses[props.level],
     "font-semibold",
     props.className,

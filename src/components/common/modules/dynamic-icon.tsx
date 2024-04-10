@@ -1,7 +1,6 @@
 import { theme } from "antd";
 import React, { useState, useEffect, useMemo } from "react";
-import { twMerge } from "tailwind-merge";
-import { getAllIcons } from "@/utils";
+import { cn, getAllIcons } from "@/utils";
 import { IconType } from "react-icons";
 
 interface IDynamicIconProps {
@@ -52,7 +51,7 @@ export const DynamicIcon = (props: IDynamicIconProps) => {
 
   return React.isValidElement(component) ? (
     <div
-      className={twMerge("flex items-center justify-center", props.className)}
+      className={cn("flex items-center justify-center", props.className)}
       style={{
         color: props.iconColour || themeToken.colorPrimary,
       }}

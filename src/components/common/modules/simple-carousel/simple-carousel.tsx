@@ -4,9 +4,8 @@ import { useEffect, useRef, useState } from "react";
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
 import { SimpleTooltip } from "../simple-tooltip";
 import Image from "next/image";
-import { twMerge } from "tailwind-merge";
 import { Heading } from "../heading";
-import clsx from "clsx";
+import { cn } from "@/utils";
 
 export interface ISimpleCarouseSlide {
   /**
@@ -88,14 +87,14 @@ export const SimpleCarousel = (props: ISimpleCarouselProps) => {
   return (
     <div className="flex flex-col gap-4 md:flex-row">
       <div
-        className={clsx("w-full", {
+        className={cn("w-full", {
           "md:w-3/5": hasDescriptionOrTitle,
           "md:w-full": !hasDescriptionOrTitle,
         })}
       >
         <Carousel
           autoplay={props.autoplay === undefined ? true : props.autoplay}
-          className={twMerge(
+          className={cn(
             props.scaleOnHover ? styles.carousel : undefined,
             props.className,
           )}
@@ -110,7 +109,7 @@ export const SimpleCarousel = (props: ISimpleCarouselProps) => {
                 alt={slide.alt}
                 width={slide.width}
                 height={slide.height}
-                className={twMerge(styles.image, "h-auto w-full")}
+                className={cn(styles.image, "h-auto w-full")}
               />
             </div>
           ))}

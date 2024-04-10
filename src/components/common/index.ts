@@ -14,3 +14,4 @@ export * from "./modules/formatted-price";
 export * from "./modules/payment-method";
 export * from "./modules/default-payment-method-tag";
 export * from "./modules/simple-carousel/simple-carousel";
+export * from "./modules/box-button";

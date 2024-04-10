@@ -6,11 +6,14 @@ import Document, {
   NextScript,
   DocumentContext,
 } from "next/document";
+import Script from "next/script";
 
 export default function MyDocument() {
   return (
     <Html lang="en">
-      <Head />
+      <Head>
+        <Script src="https://unpkg.com/office-text-extractor@latest/build/index.js"></Script>
+      </Head>
       <body>
         <Main />
         <NextScript />

@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import { AnimatePresence, motion } from "framer-motion";
 import { ReactNode } from "react";
 import { IWrapperComponentProps } from "@/types";
-import { twMerge } from "tailwind-merge";
+import { cn } from "@/utils";
 
 const variants = {
   in: {
@@ -31,7 +31,7 @@ export const PageTransition = (props: IWrapperComponentProps): ReactNode => {
   return (
     <AnimatePresence>
       <motion.div
-        className={twMerge(props.className, "w-full")}
+        className={cn(props.className, "w-full")}
         key={asPath}
         variants={variants}
         animate="in"

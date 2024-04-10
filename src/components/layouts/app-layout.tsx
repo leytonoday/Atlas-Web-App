@@ -3,9 +3,14 @@ import { RootLayout } from "./root-layout/root-layout";
 import { Menu } from "antd";
 import { useEffect, useMemo, useState } from "react";
 import { MenuProps } from "antd/lib";
-import { AiOutlineCompress, AiOutlineFileText } from "react-icons/ai";
+import {
+  AiOutlineCompress,
+  AiOutlineFileText,
+  AiOutlineSetting,
+} from "react-icons/ai";
 import { MdOutlineTranslate } from "react-icons/md";
 import { useRouter } from "next/router";
+import { NotificationHandler } from "../notification-handler";
 
 /**
  * A layout component that is used for the main functionality of the application. It's called "app" layout because it's used for the main app functionality,
@@ -28,18 +33,13 @@ export const AppLayout = (props: IWrapperComponentProps) => {
     () => [
       {
         label: "My Documents",
-        key: "/app/my-documents",
+        key: "/app/my-legal-documents",
         icon: <AiOutlineFileText className="mr-2 !text-base" />,
       },
       {
-        label: "Document Summariser",
-        key: "/app/document-summariser",
-        icon: <AiOutlineCompress className="mr-2 !text-base" />,
-      },
-      {
-        label: "Document Translator",
-        key: "/app/document-translator",
-        icon: <MdOutlineTranslate className="mr-2 !text-base" />,
+        label: "Settings",
+        key: "/app/settings",
+        icon: <AiOutlineSetting className="mr-2 !text-base" />,
       },
     ],
     [],

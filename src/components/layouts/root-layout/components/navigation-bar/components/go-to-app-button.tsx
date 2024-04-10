@@ -14,7 +14,7 @@ export const GoToAppButton = () => {
   }
 
   return (
-    <Link href="/app/my-documents">
+    <Link href="/app/my-legal-documents">
       <Button type="primary">Go to Atlas App</Button>
     </Link>
   );

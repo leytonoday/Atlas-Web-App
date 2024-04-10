@@ -12,3 +12,4 @@ export * from "./modules/get-all-icons";
 export * from "./modules/is-development-mode";
 export * from "./modules/get-support-email";
 export * from "./modules/sign-out";
+export * from "./modules/cn";
