@@ -15,7 +15,7 @@ export const LegalDocument = (props: ILegalDocumentProps) => {
         innerClassName="flex items-center justify-center flex-col"
       >
         {mimeTypeToIcon(props.document.mimeType)}
-        <span className="text-xs text-gray-500 text-center line-clamp-2 px-1">
+        <span className="text-xs text-gray-500 text-center line-clamp-2 px-1 break-all">
           {props.document.name}
         </span>
       </BoxButton>

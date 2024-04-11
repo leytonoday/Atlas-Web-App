@@ -23,6 +23,7 @@ import { useStore } from "@/store";
 interface ILegalDocumentModalProps {
   isModalOpen: boolean;
   onClose: () => void;
+  onDeleted: () => void;
   legalDocument: ILegalDocument | null;
 }
 
@@ -100,6 +101,22 @@ export const LegalDocumentModal = (props: ILegalDocumentModalProps) => {
     }
   }, [innerModalMode, legalDocumentSummary, props.legalDocument]);
 
+  const {
+    mutate: deleteLegalDocument,
+    isLoading: isDeleteLegalDocumentLoading,
+  } = useMutation({
+    mutationFn: (legalDocumentId: string) =>
+      services.api.document.deleteLegalDocument(legalDocumentId),
+    onSuccess: () => {
+      notificationApi.success({
+        message: "Success",
+        description: "Document deleted successfully",
+      });
+      props.onDeleted();
+    },
+    onError: handleApiRequestError,
+  });
+
   return (
     <>
       <Modal
@@ -113,17 +130,7 @@ export const LegalDocumentModal = (props: ILegalDocumentModalProps) => {
           <Spin />
         ) : (
           <div>
-            <div className="flex flex-wrap justify-between py-4">
-              <BoxButton innerClassName="flex items-center justify-center flex-col text-center">
-                {mimeTypeToIcon(props.legalDocument.mimeType)}
-                <span className="text-xs">Open Original</span>
-              </BoxButton>
-
-              <BoxButton innerClassName="flex items-center justify-center flex-col text-center">
-                <AiOutlineTranslation className="text-2xl md:text-4xl" />
-                <span className="text-xs">Create Translation</span>
-              </BoxButton>
-
+            <div className="flex flex-wrap justify-evenly py-4">
               <Spin spinning={isSummaryLoading || createSummaryStarted}>
                 <BoxButton
                   disabled={isSummaryLoading}
@@ -160,7 +167,20 @@ export const LegalDocumentModal = (props: ILegalDocumentModalProps) => {
               </Spin>
             </div>
             <div className="flex justify-center">
-              <Button danger>Delete</Button>
+              <Button
+                disabled={
+                  legalDocumentSummary !== null &&
+                  legalDocumentSummary?.processingStatus !==
+                    LegalDocumentProcessingStatus.COMPLETE
+                }
+                danger
+                onClick={() => {
+                  deleteLegalDocument(props.legalDocument!.id);
+                }}
+                loading={isDeleteLegalDocumentLoading}
+              >
+                Delete
+              </Button>
             </div>
           </div>
         )}

@@ -38,6 +38,10 @@ export default function MyLegalDocuments() {
         isModalOpen={isLegalDocumentModalOpen}
         onClose={onLegalDocumentModalClose}
         legalDocument={selectedLegalDocument}
+        onDeleted={async () => {
+          refetchLegalDocuments();
+          onLegalDocumentModalClose();
+        }}
       />
 
       <Card title="My Documents" size={"default"} className="w-full">

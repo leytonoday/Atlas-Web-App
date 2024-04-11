@@ -95,5 +95,6 @@ export const config = {
     "/admin/:path*",
     "/account-settings/:path*",
     "/product/checkout/:path*",
+    "/app/:path*",
   ],
 };

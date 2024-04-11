@@ -43,6 +43,12 @@ export interface IDocumentService extends IApiBaseService {
   createLegalDocumentSummary: (
     legalDocumentId: string,
   ) => Promise<IServerResponse>;
+
+  /**
+   * Deletes a legal document
+   * @param legalDocumentId The ID of the legal document to delete
+   */
+  deleteLegalDocument: (legalDocumentId: string) => Promise<IServerResponse>;
 }
 
 export const documentService: IDocumentService = {
@@ -75,6 +81,13 @@ export const documentService: IDocumentService = {
   createLegalDocumentSummary: async function (legalDocumentId: string) {
     const response = await axios.post<IServerResponse>(
       `${this.baseUrl}/summary/${legalDocumentId}`,
+    );
+    return response.data;
+  },
+
+  deleteLegalDocument: async function (legalDocumentId: string) {
+    const response = await axios.delete<IServerResponse>(
+      `${this.baseUrl}/${legalDocumentId}`,
     );
     return response.data;
   },

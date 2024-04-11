@@ -53,7 +53,6 @@ export const LegalDocumentUploader = (props: ILegalDocumentUploaderProps) => {
       services.api.document.createLegalDocuments({
         documents: createDocumentRequests,
       }),
-    onError: handleApiRequestError,
   });
 
   // Whenever the modal is closed, reset the fileList
@@ -139,7 +138,6 @@ export const LegalDocumentUploader = (props: ILegalDocumentUploaderProps) => {
   const uploadLegalDocuments = useCallback(async () => {
     const createLegalDocumentsData: ICreateLegalDocument[] = [];
 
-    // Extract text from the documents
     for (const file of fileList) {
       const buffer = await readFileToBuffer(file.originFileObj as File);
       if (buffer === null) {
@@ -161,8 +159,15 @@ export const LegalDocumentUploader = (props: ILegalDocumentUploaderProps) => {
       return;
     }
 
-    const response = await createLegalDocuments(createLegalDocumentsData);
-    const failedFiles = response.data as string[];
+    let failedFiles = [];
+
+    try {
+      const response = await createLegalDocuments(createLegalDocumentsData);
+      failedFiles = response.data as string[];
+    } catch (e) {
+      handleApiRequestError(e);
+      return;
+    }
 
     // Show failed messages
     for (const file of failedFiles) {
