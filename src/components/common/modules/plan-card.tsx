@@ -67,7 +67,7 @@ export const PlanCard = (props: IPlanCardProps) => {
       : props.plan.annualPrice;
 
   const priceLabel =
-    props.pricingMode === PricingMode.Month ? "/month" : "/year";
+    props.pricingMode === PricingMode.Month ? "per month" : "per year";
 
   /**
    * Gets the text to display on the button.
@@ -185,15 +185,7 @@ export const PlanCard = (props: IPlanCardProps) => {
         </div>
 
         {/* Icon and name */}
-        <div className="flex items-center gap-4">
-          <div className="flex items-center justify-center text-2xl">
-            <DynamicIcon
-              iconName={props.plan.icon}
-              iconColour={props.plan.iconColour}
-            />
-          </div>
-          <span className="font-semibold">{props.plan.name}</span>
-        </div>
+        <span className="font-semibold text-2xl">{props.plan.name}</span>
 
         {/* Subtitle */}
         <div className="mt-1 flex text-sm opacity-75">
@@ -212,10 +204,16 @@ export const PlanCard = (props: IPlanCardProps) => {
               <div className="flex items-end text-5xl">
                 {(price / 100).toFixed(2)}
               </div>
-              <div className="flex items-end text-xl">{priceLabel}</div>
             </div>
           </TextTransition>
+          <div className="flex-1 flex items-center justify-end mr-4 text-5xl">
+            <DynamicIcon
+              iconName={props.plan.icon}
+              iconColour={props.plan.iconColour}
+            />
+          </div>
         </div>
+        <div className="flex items-end text-md opacity-75">{priceLabel}</div>
 
         {/* Get Started Button */}
         <Link

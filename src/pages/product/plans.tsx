@@ -43,7 +43,7 @@ export default function Plans(props: IPlansProps) {
       <CenteredContainer>
         <PageTitle
           title="Ready to get started?"
-          subtitle="Choose a plan tailored to your needs"
+          subtitle="Select a plan customized to suit your requirements."
         />
 
         {/* Monthly or yearly pricing switch */}
