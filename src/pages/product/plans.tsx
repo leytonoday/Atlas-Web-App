@@ -33,7 +33,7 @@ export default function Plans(props: IPlansProps) {
   const { data: mySubscription } = useApiQuery<IStripeSubscription | null>({
     queryKey: ["mySubscription"],
     queryFn: () => services.api.stripe.getMySubscription(),
-    enabled: store.whoAmI !== null,
+    enabled: !!store.whoAmI,
   });
 
   return (

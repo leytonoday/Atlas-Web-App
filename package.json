@@ -13,6 +13,7 @@
   "dependencies": {
     "@ant-design/cssinjs": "^1.18.4",
     "@apollo/client": "^3.9.6",
+    "@contentful/rich-text-react-renderer": "^15.19.6",
     "@graphql-codegen/cli": "^5.0.2",
     "@hookform/resolvers": "^3.3.4",
     "@stripe/react-stripe-js": "^2.6.0",
