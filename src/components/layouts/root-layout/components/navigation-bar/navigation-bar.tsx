@@ -24,6 +24,7 @@ import { PiToolbox } from "react-icons/pi";
 import { NotificationStatus, UserRole } from "@/types";
 import { signOut } from "@/utils";
 import { GoToAppButton } from "./components/go-to-app-button";
+import Image from "next/image";
 
 /**
  * Navigation bar component. Handles the navigation bar for desktop and mobile screens.
@@ -159,9 +160,16 @@ export const NavigationBar = (): ReactNode => {
           <div className="mx-4 flex h-full items-center justify-center text-xl gap-4 md:gap-0">
             <Link
               href="/"
-              className="text-inherit no-underline hover:text-inherit"
+              className="text-inherit no-underline hover:text-inherit text-center flex items-center gap-2"
             >
-              Legal Lighthouse
+              <Image
+                src="/logo.png"
+                alt="Legal Lighthouse"
+                width={150}
+                height={150}
+                className="w-auto h-12"
+              />
+              <span className="hidden md:block">Legal Lighthouse</span>
             </Link>
 
             {userHasPlanId && (
