@@ -160,6 +160,7 @@ export default function SignUp(props: ISignUpProps) {
               name="email"
               label="Email"
               placeholder="Enter email"
+              inputType="email"
               formState={formState}
             />
 

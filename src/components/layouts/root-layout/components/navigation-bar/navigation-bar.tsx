@@ -161,7 +161,7 @@ export const NavigationBar = (): ReactNode => {
               href="/"
               className="text-inherit no-underline hover:text-inherit"
             >
-              Atlas
+              Legal Lighthouse
             </Link>
 
             {userHasPlanId && (

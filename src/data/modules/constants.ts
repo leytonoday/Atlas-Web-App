@@ -6,7 +6,7 @@ export const PROD_WEBSITE_URL = "";
 
 export const API_COOKIE_NAME = "Atlas.Identity";
 
-export const DEV_SUPPORT_EMAIL = "support@atlas.com";
+export const DEV_SUPPORT_EMAIL = "support@legallighthouse.xyz";
 export const PROD_SUPPORT_EMAIL = "";
 
 export const TEXT_COLOUR = "#313131";

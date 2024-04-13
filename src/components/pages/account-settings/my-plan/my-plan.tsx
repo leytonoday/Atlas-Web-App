@@ -213,19 +213,20 @@ export const MyPlan = (props: IMyPlanProps) => {
             {mySubscription?.status === StripeSubscriptionStatus.Trialing ||
             mySubscription?.status === StripeSubscriptionStatus.PastDue ? (
               <>
-                <li>Your access to Atlas will end immediately.</li>
+                <li>Your access to Legal Lighthouse will end immediately.</li>
               </>
             ) : (
               <>
                 <li>
-                  You will continue to have full access to Atlas until{" "}
+                  You will continue to have full access to Legal Lighthouse
+                  until{" "}
                   <span className="font-semibold">{currentPeriodEnd}</span>,
                   which is the end of your current billing period.
                 </li>
                 <li>
                   If you change your mind before{" "}
                   <span className="font-semibold">{currentPeriodEnd}</span>, you
-                  can still continue using Atlas as usual.
+                  can still continue using Legal Lighthouse as usual.
                 </li>
                 <li>
                   Please note that any unused portion of the current billing
@@ -265,7 +266,7 @@ export const MyPlan = (props: IMyPlanProps) => {
    */
   const showReactivateSubscriptionConfirm = useCallback(() => {
     confirm({
-      title: "Welcome back to Atlas!",
+      title: "Welcome back to Legal Lighthouse!",
       width: "50em",
       content: (
         <div>
@@ -275,8 +276,8 @@ export const MyPlan = (props: IMyPlanProps) => {
           <br />
           <ul>
             <li>
-              Your access to Atlas will remain uninterrupted, and you can
-              continue using the service as before.
+              Your access to Legal Lighthouse will remain uninterrupted, and you
+              can continue using the service as before.
             </li>
             <li>
               Your subscription will automatically resume it's regular billing
@@ -355,7 +356,9 @@ export const MyPlan = (props: IMyPlanProps) => {
 
                 {/* Date subscribed */}
                 <div className="mt-2">
-                  <span>You're a Atlas {myPlan?.name} user, since</span>{" "}
+                  <span>
+                    You're a Legal Lighthouse {myPlan?.name} user, since
+                  </span>{" "}
                   {dateFormat(mySubscription?.created, "dd/mm/yyyy")}.
                 </div>
               </div>

@@ -25,7 +25,9 @@ interface ISimpleHeadProps {
 export const SimpleHead = (props: ISimpleHeadProps): ReactNode => {
   const router = useRouter();
 
-  const title = props.omitSuffix ? props.title : `${props.title} | Atlas`;
+  const title = props.omitSuffix
+    ? props.title
+    : `${props.title} | Legal Lighthouse`;
 
   const description =
     props.description ||
@@ -41,7 +43,7 @@ export const SimpleHead = (props: ISimpleHeadProps): ReactNode => {
 
       <meta name="og:description" content={description} />
 
-      <meta property="og:image" content="/icon.png" />
+      <meta property="og:image" content="/logo.png" />
       <meta property="og:url" content={router.pathname} />
       <meta property="og:type" content="website" />
     </Head>

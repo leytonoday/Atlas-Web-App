@@ -23,11 +23,11 @@ export const SubscriptionCard = (props: ISubscriptionCardProps) => (
   <div className="flex items-center gap-4">
     <div>
       <Image
-        src="/icon.png"
-        alt="Atlas Logo"
+        src="/logo.png"
+        alt="Legal Lighthouse Logo"
         width={150}
         height={150}
-        className="h-auto w-20"
+        className="h-20 w-auto"
       />
     </div>
 

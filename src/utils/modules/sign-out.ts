@@ -1,10 +1,14 @@
 import { services } from "@/services";
 import { useStore } from "@/store";
-import { deleteCookie } from "cookies-next";
 
 export const signOut = async (): Promise<boolean> => {
-  const result = await services.api.authentication.signOut();
-  if (!result.isSuccess) {
+  try {
+    // This could fail if the user has already signed out.
+    const result = await services.api.authentication.signOut();
+    if (!result.isSuccess) {
+      return false;
+    }
+  } catch {
     return false;
   }
 

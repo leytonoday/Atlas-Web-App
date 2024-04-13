@@ -7,7 +7,7 @@ import Link from "next/link";
 export const MyPlanNotSubscribed = () => (
   <Result
     title="You are not subscribed to a plan"
-    subTitle="You have an account, but your account does not have access to the Atlas application. If you have just purchased a plan, please wait one minute for your subscription to be processed."
+    subTitle="You have an account, but your account does not have access to the Legal Lighthouse application. If you have just purchased a plan, please wait one minute for your subscription to be processed."
     status="info"
     extra={
       <Link href="/product/plans">

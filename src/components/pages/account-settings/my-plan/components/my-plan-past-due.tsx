@@ -40,7 +40,7 @@ export const MyPlanPastDue = (props: IMyPlanPastDueProps) => {
   return (
     <Result
       title="Past Due"
-      subTitle="Payment for your subscription is past due. Please update your payment method to continue using Atlas."
+      subTitle="Payment for your subscription is past due. Please update your payment method to continue using Legal Lighthouse."
       status="error"
       extra={
         <div className="flex justify-center gap-4">
