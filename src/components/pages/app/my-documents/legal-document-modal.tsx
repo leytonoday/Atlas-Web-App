@@ -41,6 +41,9 @@ export const LegalDocumentModal = (props: ILegalDocumentModalProps) => {
     setCreateSummaryStarted(false);
   }, [props.isModalOpen]);
 
+  /**
+   * Gets the legal document summary.
+   */
   const {
     isLoading: isLegalDocumentSummaryLoading,
     data: legalDocumentSummary,
@@ -58,6 +61,16 @@ export const LegalDocumentModal = (props: ILegalDocumentModalProps) => {
     enabled: props.legalDocument !== null && props.isModalOpen,
   });
 
+  /**
+   * If the summary hasn't been created yet, the summary button will be disabled if the user has no credits.
+   */
+  const isSummaryButtonDisabled =
+    store.creditTracker.currentCreditCount === 0 &&
+    legalDocumentSummary === null;
+
+  /**
+   * Creates a legal document summary.
+   */
   const {
     mutate: createLegalDocumentSummary,
     isLoading: isCreateLegalDocumentSummaryLoading,
@@ -70,37 +83,9 @@ export const LegalDocumentModal = (props: ILegalDocumentModalProps) => {
     onError: handleApiRequestError,
   });
 
-  const isSummaryLoading = useLoadingCombinator(
-    isLegalDocumentSummaryLoading,
-    isCreateLegalDocumentSummaryLoading,
-    legalDocumentSummary?.processingStatus ===
-      LegalDocumentProcessingStatus.NOT_STARTED ||
-      legalDocumentSummary?.processingStatus ===
-        LegalDocumentProcessingStatus.PROCESSING,
-  );
-
-  const summaryButtonLabel = useMemo(() => {
-    switch (legalDocumentSummary?.processingStatus) {
-      case LegalDocumentProcessingStatus.NOT_STARTED:
-        return "Summary Pending...";
-      case LegalDocumentProcessingStatus.PROCESSING:
-        return "Summary Processing...";
-      case LegalDocumentProcessingStatus.COMPLETE:
-        return "Open Summary";
-      default:
-        return "Create Summary";
-    }
-  }, [legalDocumentSummary?.processingStatus]);
-
-  const innerModalTitle = useMemo(() => {
-    switch (innerModalMode) {
-      case "summary":
-        return legalDocumentSummary?.summarizedTitle;
-      case "translation":
-        return "Translation";
-    }
-  }, [innerModalMode, legalDocumentSummary, props.legalDocument]);
-
+  /**
+   * Deletes a legal document.
+   */
   const {
     mutate: deleteLegalDocument,
     isLoading: isDeleteLegalDocumentLoading,
@@ -116,6 +101,46 @@ export const LegalDocumentModal = (props: ILegalDocumentModalProps) => {
     },
     onError: handleApiRequestError,
   });
+
+  /**
+   * Combines the loading states of the legal document summary and the create legal document summary requests.
+   */
+  const isSummaryLoading = useLoadingCombinator(
+    isLegalDocumentSummaryLoading,
+    isCreateLegalDocumentSummaryLoading,
+    legalDocumentSummary?.processingStatus ===
+      LegalDocumentProcessingStatus.NOT_STARTED ||
+      legalDocumentSummary?.processingStatus ===
+        LegalDocumentProcessingStatus.PROCESSING,
+  );
+
+  /**
+   * Determines the label for the summary button based on the processing status of the legal document summary.
+   */
+  const summaryButtonLabel = useMemo(() => {
+    switch (legalDocumentSummary?.processingStatus) {
+      case LegalDocumentProcessingStatus.NOT_STARTED:
+        return "Summary Pending...";
+      case LegalDocumentProcessingStatus.PROCESSING:
+        return "Summary Processing...";
+      case LegalDocumentProcessingStatus.COMPLETE:
+        return "Open Summary";
+      default:
+        return "Create Summary";
+    }
+  }, [legalDocumentSummary?.processingStatus]);
+
+  /**
+   * Determines the context for the inner modal based on the inner modal mode.
+   */
+  const innerModalTitle = useMemo(() => {
+    switch (innerModalMode) {
+      case "summary":
+        return legalDocumentSummary?.summarizedTitle;
+      case "translation":
+        return "Translation";
+    }
+  }, [innerModalMode, legalDocumentSummary, props.legalDocument]);
 
   return (
     <>
@@ -133,7 +158,7 @@ export const LegalDocumentModal = (props: ILegalDocumentModalProps) => {
             <div className="flex flex-wrap justify-evenly py-4">
               <Spin spinning={isSummaryLoading || createSummaryStarted}>
                 <BoxButton
-                  disabled={isSummaryLoading}
+                  disabled={isSummaryLoading || isSummaryButtonDisabled}
                   innerClassName="flex items-center justify-center flex-col text-center"
                   className={cn({
                     "border-dashed border-gray-300": !legalDocumentSummary,

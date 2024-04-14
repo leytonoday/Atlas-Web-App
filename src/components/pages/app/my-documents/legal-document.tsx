@@ -5,12 +5,14 @@ import { mimeTypeToIcon } from "./common/mime-type-to-icon";
 interface ILegalDocumentProps {
   document: ILegalDocument;
   onClick: () => void;
+  disabled?: boolean;
 }
 
 export const LegalDocument = (props: ILegalDocumentProps) => {
   return (
     <SimpleTooltip text={props.document.name}>
       <BoxButton
+        disabled={props.disabled}
         onClick={props.onClick}
         innerClassName="flex items-center justify-center flex-col"
       >

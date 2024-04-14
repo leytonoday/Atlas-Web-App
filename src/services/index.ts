@@ -10,6 +10,10 @@ import {
   documentService,
   IDocumentService,
 } from "./modules/legal-document-service";
+import {
+  creditTrackerService,
+  ICreditTrackerService,
+} from "./modules/credit-tracker-service";
 
 /**
  * Defines services that interact with APIs.
@@ -21,6 +25,7 @@ export interface IServicesApi {
   plan: IPlanService;
   feature: IFeatureService;
   document: IDocumentService;
+  creditTracker: ICreditTrackerService;
 }
 
 /**
@@ -41,5 +46,6 @@ export const services: IServices = {
     plan: planService,
     feature: featureService,
     document: documentService,
+    creditTracker: creditTrackerService,
   },
 };

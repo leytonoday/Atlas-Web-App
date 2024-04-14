@@ -3,20 +3,17 @@ import { RootLayout } from "./root-layout/root-layout";
 import { Menu } from "antd";
 import { useEffect, useMemo, useState } from "react";
 import { MenuProps } from "antd/lib";
-import {
-  AiOutlineCompress,
-  AiOutlineFileText,
-  AiOutlineSetting,
-} from "react-icons/ai";
-import { MdOutlineTranslate } from "react-icons/md";
+import { AiOutlineFileText, AiOutlineSetting } from "react-icons/ai";
 import { useRouter } from "next/router";
-import { NotificationHandler } from "../notification-handler";
+import { useCreditTracker } from "@/hooks/modules/use-credit-tracker";
 
 /**
  * A layout component that is used for the main functionality of the application. It's called "app" layout because it's used for the main app functionality,
  * not because it's for the entire web application.
  */
 export const AppLayout = (props: IWrapperComponentProps) => {
+  useCreditTracker();
+
   const router = useRouter();
 
   const [currentPath, setCurrentPath] = useState(router.pathname);

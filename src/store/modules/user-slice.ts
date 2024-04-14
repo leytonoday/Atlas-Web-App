@@ -1,4 +1,4 @@
-import { IWhoAmI } from "@/types";
+import { ICreditTracker, IWhoAmI } from "@/types";
 import { StateCreator } from "zustand";
 
 /**
@@ -7,6 +7,9 @@ import { StateCreator } from "zustand";
 export interface IUserSlice {
   whoAmI?: IWhoAmI;
   setWhoAmI: (whoAmI?: IWhoAmI) => void;
+
+  creditTracker: ICreditTracker;
+  setCreditTracker: (creditTracker: ICreditTracker) => void;
 }
 
 /**
@@ -18,4 +21,11 @@ export interface IUserSlice {
 export const userSlice: StateCreator<IUserSlice> = (set, _) => ({
   whoAmI: undefined,
   setWhoAmI: (whoAmI) => set({ whoAmI }),
+
+  creditTracker: {
+    maxCreditCount: 0,
+    currentCreditCount: 0,
+  },
+
+  setCreditTracker: (creditTracker) => set({ creditTracker }),
 });

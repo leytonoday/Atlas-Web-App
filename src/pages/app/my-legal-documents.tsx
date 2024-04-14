@@ -6,10 +6,12 @@ import { useApiQuery } from "@/hooks";
 import { services } from "@/services";
 import { useStore } from "@/store";
 import { ILegalDocument, NotificationStatus } from "@/types";
-import { Button, Card, Spin } from "antd";
+import { Button, Card, Divider, Spin } from "antd";
 import { useCallback, useState } from "react";
 
 export default function MyLegalDocuments() {
+  const store = useStore();
+
   const [isLegalDocumentModalOpen, setIsLegalDocumentModalOpen] =
     useState(false);
   const [selectedLegalDocument, setSelectedLegalDocument] =
@@ -44,7 +46,19 @@ export default function MyLegalDocuments() {
         }}
       />
 
-      <Card title="My Documents" size={"default"} className="w-full">
+      <Card
+        title={
+          <div className="w-full flex justify-between">
+            <span>My Documents</span>
+            <span>
+              Credits: {store.creditTracker.currentCreditCount} /{" "}
+              {store.creditTracker.maxCreditCount}
+            </span>
+          </div>
+        }
+        size={"default"}
+        className="w-full"
+      >
         <Spin spinning={isLegalDocumentsLoading}>
           <div className="flex flex-wrap gap-4">
             <LegalDocumentUploader
