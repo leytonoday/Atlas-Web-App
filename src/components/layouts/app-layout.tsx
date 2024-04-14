@@ -4,7 +4,7 @@ import { Menu } from "antd";
 import { useEffect, useMemo, useState } from "react";
 import { MenuProps } from "antd/lib";
 import { AiOutlineFileText, AiOutlineSetting } from "react-icons/ai";
-import { useRouter } from "next/router";
+import { usePathname, useRouter } from "next/navigation";
 import { useCreditTracker } from "@/hooks/modules/use-credit-tracker";
 
 /**
@@ -15,16 +15,17 @@ export const AppLayout = (props: IWrapperComponentProps) => {
   useCreditTracker();
 
   const router = useRouter();
+  const pathname = usePathname();
 
-  const [currentPath, setCurrentPath] = useState(router.pathname);
+  const [currentPath, setCurrentPath] = useState(pathname);
   const onMenuItemClick: MenuProps["onClick"] = (e) => {
     const path = e.key;
     router.push(path);
   };
 
   useEffect(() => {
-    setCurrentPath(router.pathname);
-  }, [router.pathname]);
+    setCurrentPath(pathname);
+  }, [pathname]);
 
   const menuItems = useMemo<MenuProps["items"]>(
     () => [

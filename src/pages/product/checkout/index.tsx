@@ -18,7 +18,7 @@ import {
 } from "@/types";
 import { Alert, Button, Divider, Result, Spin, Tabs } from "antd";
 import { TabsProps } from "antd/lib";
-import { useRouter } from "next/router";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
@@ -37,6 +37,7 @@ type CheckoutTab = "loading" | "select-payment-method" | "new-payment-method";
  */
 export default function Checkout() {
   const router = useRouter();
+  const query = useSearchParams();
   const store = useStore();
 
   const [activeTab, setActiveTab] = useState<CheckoutTab>("loading");
@@ -44,8 +45,8 @@ export default function Checkout() {
     useState<boolean>(false);
   const [quoteInvoice, setQuoteInvoice] = useState<IStripeInvoice | null>(null);
 
-  const planId = router.query.planId as string | undefined;
-  const interval = router.query.interval as string | undefined;
+  const planId = query.get("planId") as string | undefined;
+  const interval = query.get("interval") as string | undefined;
 
   const [promotionCode, setPromotionCode] = useState<string | null>(null);
 

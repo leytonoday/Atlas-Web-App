@@ -1,6 +1,6 @@
 import Head from "next/head";
 import { ReactNode } from "react";
-import { useRouter } from "next/router";
+import { usePathname, useRouter } from "next/navigation";
 
 interface ISimpleHeadProps {
   /**
@@ -23,7 +23,7 @@ interface ISimpleHeadProps {
  * A component that sets the head of the page, including the title, description, and OpenGraph tags.
  */
 export const SimpleHead = (props: ISimpleHeadProps): ReactNode => {
-  const router = useRouter();
+  const pathname = usePathname();
 
   const title = props.omitSuffix
     ? props.title
@@ -44,7 +44,7 @@ export const SimpleHead = (props: ISimpleHeadProps): ReactNode => {
       <meta name="og:description" content={description} />
 
       <meta property="og:image" content="/logo.png" />
-      <meta property="og:url" content={router.pathname} />
+      <meta property="og:url" content={pathname} />
       <meta property="og:type" content="website" />
     </Head>
   );

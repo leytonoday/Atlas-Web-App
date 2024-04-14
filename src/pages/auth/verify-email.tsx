@@ -10,7 +10,7 @@ import {
 import { useMutation } from "@tanstack/react-query";
 import { Spin, Result, Button } from "antd";
 import { ResultStatusType } from "antd/lib/result";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { useMemo, useState } from "react";
 
 interface IVerifyEmailProps {

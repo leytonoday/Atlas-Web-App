@@ -1,6 +1,6 @@
 import { IWrapperComponentProps } from "@/types";
 import { Menu, MenuProps } from "antd";
-import { useRouter } from "next/router";
+import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 import {
   AiOutlineCreditCard,
@@ -12,16 +12,17 @@ import { RootLayout } from "./root-layout/root-layout";
 
 export const AccountSettingsLayout = (props: IWrapperComponentProps) => {
   const router = useRouter();
+  const pathname = usePathname();
 
-  const [currentPath, setCurrentPath] = useState(router.pathname);
+  const [currentPath, setCurrentPath] = useState(pathname);
   const onMenuItemClick: MenuProps["onClick"] = (e) => {
     const path = e.key;
     router.push(path);
   };
 
   useEffect(() => {
-    setCurrentPath(router.pathname);
-  }, [router.pathname]);
+    setCurrentPath(pathname);
+  }, [pathname]);
 
   const menuItems = useMemo<MenuProps["items"]>(
     () => [

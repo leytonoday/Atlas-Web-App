@@ -1,6 +1,6 @@
 import { Result } from "antd";
 import { useEffect } from "react";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { SimpleHead } from "@/components/common";
 
 type CheckoutFailureReason = "invalid-interval" | "unknown" | undefined;

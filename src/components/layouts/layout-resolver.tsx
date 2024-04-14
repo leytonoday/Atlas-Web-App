@@ -1,6 +1,6 @@
 import { IWrapperComponentProps } from "@/types";
 import { RootLayout } from "./root-layout/root-layout";
-import { useRouter } from "next/router";
+import { usePathname, useRouter } from "next/navigation";
 import { useCallback } from "react";
 import { AccountSettingsLayout } from "./account-settings-layout";
 import { AdminLayout } from "./admin-layout";
@@ -14,22 +14,22 @@ import { PageTransition } from "./root-layout/components/page-transition";
  */
 
 export const LayoutResolver = (props: IWrapperComponentProps) => {
-  const router = useRouter();
+  const pathname = usePathname();
 
   /**
    * Depending on the route, return the layout component to be used.
    */
   const routeToLayout = useCallback(() => {
     // If the route is account-settings, use the AccountSettingsLayout
-    if (router.pathname.startsWith("/account-settings")) {
+    if (pathname.startsWith("/account-settings")) {
       return AccountSettingsLayout;
-    } else if (router.pathname.startsWith("/admin")) {
+    } else if (pathname.startsWith("/admin")) {
       return AdminLayout;
-    } else if (router.pathname.startsWith("/app")) {
+    } else if (pathname.startsWith("/app")) {
       return AppLayout;
     }
     return RootLayout;
-  }, [router.pathname]);
+  }, [pathname]);
 
   const Layout = routeToLayout();
 

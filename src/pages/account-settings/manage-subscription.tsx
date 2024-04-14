@@ -5,7 +5,7 @@ import { PaymentMethods } from "@/components/pages/account-settings/payement-met
 import { useApiQuery, useLoadingCombinator, useWhoAmI } from "@/hooks";
 import { services } from "@/services";
 import { IStripePaymentMethod, IWhoAmI, UserRole } from "@/types";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 export default function ManageSubscription() {
   const router = useRouter();

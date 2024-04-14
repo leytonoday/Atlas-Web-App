@@ -16,7 +16,7 @@ import { AxiosError } from "axios";
 import { useCallback, useState } from "react";
 import { Fade } from "react-awesome-reveal";
 import { AiOutlineLock } from "react-icons/ai";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { useStore } from "@/store";
 
 const { confirm } = Modal;

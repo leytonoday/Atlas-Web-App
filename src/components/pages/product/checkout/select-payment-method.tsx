@@ -14,7 +14,7 @@ import {
 import { useStripe } from "@stripe/react-stripe-js";
 import { Button, Modal, Radio, Spin } from "antd";
 import { AxiosError } from "axios";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { useCallback, useState } from "react";
 import { Fade } from "react-awesome-reveal";
 import { AiOutlineLock } from "react-icons/ai";

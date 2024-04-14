@@ -11,7 +11,7 @@ import {
 import { useMutation } from "@tanstack/react-query";
 import { Button, Card } from "antd";
 import { AxiosError } from "axios";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { z as zod } from "zod";
 

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { useRouter } from "next/router";
+import { usePathname, useRouter } from "next/navigation";
 import { useIsMobileScreen } from "@/hooks";
 import { useMemo, useState, useEffect, ReactNode } from "react";
 import { Button, Divider, Drawer, Dropdown, Menu, MenuProps } from "antd";
@@ -32,6 +32,8 @@ import Image from "next/image";
 export const NavigationBar = (): ReactNode => {
   const router = useRouter();
   const store = useStore();
+
+  const pathname = usePathname();
   const isMobileScreen = useIsMobileScreen();
 
   const [currentPath, setCurrentPath] = useState<string>("/");
@@ -56,8 +58,8 @@ export const NavigationBar = (): ReactNode => {
    * Update the current path when the route is changed externally
    */
   useEffect(() => {
-    setCurrentPath(router.pathname);
-  }, [router.pathname]);
+    setCurrentPath(pathname);
+  }, [pathname]);
 
   const onMenuItemClick: MenuProps["onClick"] = (e) => {
     router.push(e.key);
