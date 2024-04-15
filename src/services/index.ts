@@ -14,6 +14,7 @@ import {
   creditTrackerService,
   ICreditTrackerService,
 } from "./modules/credit-tracker-service";
+import { contactService, IContactService } from "./modules/contact-service";
 
 /**
  * Defines services that interact with APIs.
@@ -26,6 +27,7 @@ export interface IServicesApi {
   feature: IFeatureService;
   document: IDocumentService;
   creditTracker: ICreditTrackerService;
+  contact: IContactService;
 }
 
 /**
@@ -47,5 +49,6 @@ export const services: IServices = {
     feature: featureService,
     document: documentService,
     creditTracker: creditTrackerService,
+    contact: contactService,
   },
 };
