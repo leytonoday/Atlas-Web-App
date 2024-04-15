@@ -5,7 +5,7 @@ import {
   LegalDocumentProcessingStatus,
   NotificationStatus,
 } from "@/types";
-import { Button, Modal, notification, Result, Spin } from "antd";
+import { Button, Divider, Modal, notification, Result, Spin } from "antd";
 import {
   AiOutlineCheckCircle,
   AiOutlineCompress,
@@ -33,9 +33,6 @@ export const LegalDocumentModal = (props: ILegalDocumentModalProps) => {
   const [notificationApi, context] = notification.useNotification();
 
   const [innerModalOpen, setInnerModalOpen] = useState(false);
-  const [innerModalMode, setInnerModalMode] = useState<
-    "summary" | "translation"
-  >("summary");
 
   useEffect(() => {
     setCreateSummaryStarted(false);
@@ -134,13 +131,8 @@ export const LegalDocumentModal = (props: ILegalDocumentModalProps) => {
    * Determines the context for the inner modal based on the inner modal mode.
    */
   const innerModalTitle = useMemo(() => {
-    switch (innerModalMode) {
-      case "summary":
-        return legalDocumentSummary?.summarizedTitle;
-      case "translation":
-        return "Translation";
-    }
-  }, [innerModalMode, legalDocumentSummary, props.legalDocument]);
+    return legalDocumentSummary?.summarizedTitle;
+  }, [legalDocumentSummary, props.legalDocument]);
 
   return (
     <>
@@ -173,7 +165,6 @@ export const LegalDocumentModal = (props: ILegalDocumentModalProps) => {
                       });
                     } else {
                       setInnerModalOpen(true);
-                      setInnerModalMode("summary");
                     }
                   }}
                 >
@@ -217,11 +208,13 @@ export const LegalDocumentModal = (props: ILegalDocumentModalProps) => {
         footer={null}
         className="!w-11/12 md:!w-8/12"
       >
-        {innerModalMode === "summary" ? (
-          <span>{legalDocumentSummary?.summarisedText}</span>
-        ) : (
-          <span>Translation</span>
-        )}
+        <p>{legalDocumentSummary?.summarisedText}</p>
+
+        <Divider />
+
+        <p className="my-0 text-sm font-normal text-gray-500">
+          {legalDocumentSummary?.keywords}
+        </p>
       </Modal>
     </>
   );
