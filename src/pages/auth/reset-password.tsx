@@ -129,6 +129,7 @@ export default function ResetPassword(props: IResetPasswordProps) {
               label="Password"
               placeholder="Enter password"
               formState={formState}
+              inputType="password"
             />
 
             <SimpleControlledInput
@@ -137,6 +138,7 @@ export default function ResetPassword(props: IResetPasswordProps) {
               label="Confirm Password"
               placeholder="Confirm password"
               formState={formState}
+              inputType="password"
             />
 
             <div className="flex w-full justify-center">

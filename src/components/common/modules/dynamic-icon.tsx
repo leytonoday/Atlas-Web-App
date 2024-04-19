@@ -1,5 +1,5 @@
 import { theme } from "antd";
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect, useMemo, ReactNode } from "react";
 import { cn, getAllIcons } from "@/utils";
 import { IconType } from "react-icons";
 
@@ -24,7 +24,7 @@ interface IDynamicIconProps {
  * Used to dynamically render an icon from the react-icons library based on the iconName prop.
  */
 export const DynamicIcon = (props: IDynamicIconProps) => {
-  const [component, setComponent] = useState<IconType | null>(null);
+  const [component, setComponent] = useState<ReactNode | null>(null);
   const { token: themeToken } = theme.useToken();
 
   const allIcons = useMemo(() => getAllIcons(), []);
@@ -33,7 +33,7 @@ export const DynamicIcon = (props: IDynamicIconProps) => {
     const importComponent = async () => {
       try {
         const targetIcon = allIcons[props.iconName as keyof typeof allIcons];
-        setComponent(targetIcon);
+        setComponent(React.createElement(targetIcon));
       } catch (error) {
         console.log(error);
       }

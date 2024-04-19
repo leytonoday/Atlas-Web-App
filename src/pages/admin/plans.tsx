@@ -195,6 +195,7 @@ export default function Plans() {
                     <Button
                       disabled={!plan.active}
                       shape="circle"
+                      aria-label="Manage Features"
                       className="flex items-center justify-center"
                       onClick={() => {
                         setSelectedPlan(plan);
@@ -208,6 +209,7 @@ export default function Plans() {
                     <Button
                       disabled={!plan.active}
                       shape="circle"
+                      aria-label="Manage Users"
                       className="flex items-center justify-center"
                       onClick={() => {
                         setSelectedPlan(plan);
@@ -225,6 +227,7 @@ export default function Plans() {
                     <Button
                       disabled={!plan.active}
                       shape="circle"
+                      aria-label="Edit Plan"
                       className="flex items-center justify-center"
                       onClick={() => {
                         setSelectedPlan(plan);
@@ -241,6 +244,9 @@ export default function Plans() {
                     <Button
                       danger={plan.active}
                       shape="circle"
+                      aria-label={
+                        plan.active ? "Deactivate Plan" : "Reactivate Plan"
+                      }
                       className="flex items-center justify-center"
                       onClick={() => {
                         if (plan.active) {

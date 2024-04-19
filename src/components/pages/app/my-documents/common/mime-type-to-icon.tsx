@@ -1,5 +1,5 @@
 import {
-  AiOutlineFileAdd,
+  AiOutlineFilePdf,
   AiOutlineFileText,
   AiOutlineFileWord,
 } from "react-icons/ai";
@@ -7,7 +7,7 @@ import {
 export const mimeTypeToIcon = (mimeType: string) => {
   switch (mimeType) {
     case "application/pdf": {
-      return <AiOutlineFileAdd className="text-2xl md:text-4xl" />;
+      return <AiOutlineFilePdf className="text-2xl md:text-4xl" />;
     }
     case "text/plain": {
       return <AiOutlineFileText className="text-2xl md:text-4xl" />;

@@ -103,15 +103,17 @@ export const SimpleControlledInput = (
           validateStatus={errors ? "error" : "success"}
           help={errors?.message as string}
         >
-          {props.label && (
-            <div className="mb-2 ml-1 font-medium">
-              {props.label}{" "}
-              {props.showRequired ? (
-                <span className="text-primary">*</span>
-              ) : null}
-            </div>
-          )}
-          {InputFactory(field, props)}
+          <label htmlFor={props.name}>
+            {props.label && (
+              <div className="mb-2 ml-1 font-medium">
+                {props.label}{" "}
+                {props.showRequired ? (
+                  <span className="text-primary">*</span>
+                ) : null}
+              </div>
+            )}
+            {InputFactory(field, props)}
+          </label>
         </Form.Item>
       )}
     />

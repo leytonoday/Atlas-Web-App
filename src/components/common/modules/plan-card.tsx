@@ -216,20 +216,24 @@ export const PlanCard = (props: IPlanCardProps) => {
         <div className="flex items-end text-md opacity-75">{priceLabel}</div>
 
         {/* Get Started Button */}
-        <Link
-          href={getButtonLink()}
-          className="mt-6 flex w-full justify-center no-underline"
-        >
-          <Button
-            disabled={props.disabledButton}
-            size="large"
-            className="w-11/12"
-            aria-label={props.isCurrentPlan ? "Current Plan" : getButtonLabel()}
-            type={props.plan.backgroundColour ? "default" : "primary"}
+        {!props.disabledButton && (
+          <Link
+            href={getButtonLink()}
+            className="mt-6 flex w-full justify-center no-underline"
           >
-            {props.isCurrentPlan ? <div>Current Plan</div> : getButtonLabel()}
-          </Button>
-        </Link>
+            <Button
+              disabled={props.disabledButton}
+              size="large"
+              className="w-11/12"
+              aria-label={
+                props.isCurrentPlan ? "Current Plan" : getButtonLabel()
+              }
+              type={props.plan.backgroundColour ? "default" : "primary"}
+            >
+              {props.isCurrentPlan ? <div>Current Plan</div> : getButtonLabel()}
+            </Button>
+          </Link>
+        )}
 
         {/* Features */}
         <br />

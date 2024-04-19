@@ -123,44 +123,46 @@ export default function Contact() {
                   validateStatus={formState.errors.type ? "error" : "success"}
                   help={formState.errors.type?.message as string}
                 >
-                  <div className="mb-2 font-medium">Message type</div>
-                  <Select
-                    allowClear
-                    showSearch
-                    {...field}
-                    placeholder="Message type"
-                  >
-                    <Select.Option value={ContactEmailType.GENERAL_INQUIRY}>
-                      General Inquiry
-                    </Select.Option>
-                    <Select.Option value={ContactEmailType.FEEDBACK}>
-                      Feedback
-                    </Select.Option>
-                    <Select.Option value={ContactEmailType.TECHNICAL_SUPPORT}>
-                      Technical Support
-                    </Select.Option>
-                    <Select.Option value={ContactEmailType.SALES}>
-                      Sales
-                    </Select.Option>
-                    <Select.Option value={ContactEmailType.BILLING}>
-                      Billing
-                    </Select.Option>
-                    <Select.Option value={ContactEmailType.PARTNERSHIP}>
-                      Partnership
-                    </Select.Option>
-                    <Select.Option value={ContactEmailType.MEDIA}>
-                      Media
-                    </Select.Option>
-                    <Select.Option value={ContactEmailType.LEGAL}>
-                      Legal
-                    </Select.Option>
-                    <Select.Option value={ContactEmailType.MARKETING}>
-                      Marketing
-                    </Select.Option>
-                    <Select.Option value={ContactEmailType.OTHER}>
-                      Other
-                    </Select.Option>
-                  </Select>
+                  <label htmlFor="type">
+                    <div className="mb-2 font-medium">Message type</div>
+                    <Select
+                      allowClear
+                      showSearch
+                      {...field}
+                      placeholder="Message type"
+                    >
+                      <Select.Option value={ContactEmailType.GENERAL_INQUIRY}>
+                        General Inquiry
+                      </Select.Option>
+                      <Select.Option value={ContactEmailType.FEEDBACK}>
+                        Feedback
+                      </Select.Option>
+                      <Select.Option value={ContactEmailType.TECHNICAL_SUPPORT}>
+                        Technical Support
+                      </Select.Option>
+                      <Select.Option value={ContactEmailType.SALES}>
+                        Sales
+                      </Select.Option>
+                      <Select.Option value={ContactEmailType.BILLING}>
+                        Billing
+                      </Select.Option>
+                      <Select.Option value={ContactEmailType.PARTNERSHIP}>
+                        Partnership
+                      </Select.Option>
+                      <Select.Option value={ContactEmailType.MEDIA}>
+                        Media
+                      </Select.Option>
+                      <Select.Option value={ContactEmailType.LEGAL}>
+                        Legal
+                      </Select.Option>
+                      <Select.Option value={ContactEmailType.MARKETING}>
+                        Marketing
+                      </Select.Option>
+                      <Select.Option value={ContactEmailType.OTHER}>
+                        Other
+                      </Select.Option>
+                    </Select>
+                  </label>
                 </Form.Item>
               )}
             />

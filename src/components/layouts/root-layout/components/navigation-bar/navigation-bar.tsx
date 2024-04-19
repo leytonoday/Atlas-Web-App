@@ -166,7 +166,7 @@ export const NavigationBar = (): ReactNode => {
             >
               <Image
                 src="/logo.png"
-                alt="Legal Lighthouse"
+                alt="Legal Lighthouse Logo"
                 width={150}
                 height={150}
                 className="w-auto h-12"
@@ -232,6 +232,7 @@ export const NavigationBar = (): ReactNode => {
               >
                 <Button
                   shape="circle"
+                  aria-label="User Profile"
                   className="!flex !h-9 !w-9 !items-center !justify-center !text-lg"
                 >
                   <AiOutlineUser />
