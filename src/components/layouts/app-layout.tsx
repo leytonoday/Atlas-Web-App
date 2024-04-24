@@ -1,11 +1,13 @@
 import { IWrapperComponentProps } from "@/types";
 import { RootLayout } from "./root-layout/root-layout";
-import { Menu } from "antd";
+import { Button, Menu, Result } from "antd";
 import { useEffect, useMemo, useState } from "react";
 import { MenuProps } from "antd/lib";
 import { AiOutlineFileText, AiOutlineSetting } from "react-icons/ai";
 import { usePathname, useRouter } from "next/navigation";
 import { useCreditTracker } from "@/hooks/modules/use-credit-tracker";
+import { useStore } from "@/store";
+import Link from "next/link";
 
 /**
  * A layout component that is used for the main functionality of the application. It's called "app" layout because it's used for the main app functionality,
@@ -14,6 +16,7 @@ import { useCreditTracker } from "@/hooks/modules/use-credit-tracker";
 export const AppLayout = (props: IWrapperComponentProps) => {
   useCreditTracker();
 
+  const store = useStore();
   const router = useRouter();
   const pathname = usePathname();
 
@@ -26,6 +29,27 @@ export const AppLayout = (props: IWrapperComponentProps) => {
   useEffect(() => {
     setCurrentPath(pathname);
   }, [pathname]);
+
+  const getChildren = () => {
+    if (store.whoAmI?.planId === null) {
+      return (
+        <Result
+          title="You are not subscribed to a plan"
+          subTitle="You have an account, but your account does not have access to the Legal Lighthouse application. If you have just purchased a plan, please wait one minute for your subscription to be processed."
+          status="info"
+          extra={
+            <Link href="/product/plans">
+              <Button type="primary" aria-label="View Plans">
+                View Plans
+              </Button>
+            </Link>
+          }
+        />
+      );
+    }
+
+    return props.children;
+  };
 
   const menuItems = useMemo<MenuProps["items"]>(
     () => [
@@ -58,7 +82,7 @@ export const AppLayout = (props: IWrapperComponentProps) => {
             }}
           />
         </div>
-        <div className="w-full flex-1 p-4 md:w-[12rem]">{props.children}</div>
+        <div className="w-full flex-1 p-4 md:w-[12rem]">{getChildren()}</div>
       </div>
     </RootLayout>
   );
