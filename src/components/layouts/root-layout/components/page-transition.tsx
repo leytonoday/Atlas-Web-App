@@ -1,8 +1,8 @@
-import { useRouter } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import { ReactNode } from "react";
 import { IWrapperComponentProps } from "@/types";
 import { cn } from "@/utils";
+import { useRouter } from "next/router";
 
 const variants = {
   in: {
