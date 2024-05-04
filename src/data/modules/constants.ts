@@ -1,5 +1,6 @@
-export const DEV_API_BASE_URL = "http://localhost:5154/api/1.0";
-export const PROD_API_BASE_URL = "";
+export const DEV_API_BASE_URL = "http://localhost:5000/api/1.0";
+export const PROD_API_BASE_URL =
+  "https://Atlas-Production.eba-sqa5ypi3.eu-west-2.elasticbeanstalk.com";
 
 export const DEV_WEBSITE_URL = "http://localhost:3000";
 export const PROD_WEBSITE_URL = "";

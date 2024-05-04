@@ -110,32 +110,27 @@ export default function SignIn() {
 
       // If the user is an admin, then redirect them to the admin dashboard
       if (whoAmI.roles.includes(UserRole.Administrator)) {
-        console.log("A");
         router.push("/admin/plans");
         return;
       }
 
       // If the user doesn't have a planId, AND they don't have a subscription, then they need to select a plan
       else if (whoAmI.planId === null && mySubscription === null) {
-        console.log("B");
         router.push("/product/plans");
         return;
       }
 
       // If the user doesn't have a planId, but they DO have a subscription, then this will mean that their planId has been revoked because of an past_due payment
       else if (whoAmI.planId === null && whoAmI !== null) {
-        console.log("C");
         router.push("/account-settings/manage-subscription");
         return;
       }
 
       // If the user has a planId, and they have a subscription, but they aren't an admin, then they can go to their subscription page
       else {
-        console.log("D");
         router.push("/account-settings/manage-subscription");
         return;
       }
-      console.log("E");
     } catch (error) {
       const errors = axiosErrorToServerResponseErrors(error as AxiosError);
 
