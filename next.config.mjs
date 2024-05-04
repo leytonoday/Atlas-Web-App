@@ -1,6 +1,6 @@
 export const DEV_API_BASE_URL = "http://localhost:5000/api/1.0";
 export const PROD_API_BASE_URL =
-  "https://Atlas-Production.eba-sqa5ypi3.eu-west-2.elasticbeanstalk.com";
+  "https://Atlas-Production.eba-sqa5ypi3.eu-west-2.elasticbeanstalk.com/api/1.0";
 
 function getApiBaseUrl() {
   return process.env.NODE_ENV === "development"
