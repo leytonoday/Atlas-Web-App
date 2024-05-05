@@ -13,3 +13,4 @@ export * from "./modules/is-development-mode";
 export * from "./modules/get-support-email";
 export * from "./modules/sign-out";
 export * from "./modules/cn";
+export * from "./modules/synchronous-sleep";

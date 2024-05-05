@@ -117,13 +117,16 @@ export default function SignUp(props: ISignUpProps) {
    */
   if (isSignUpComplete) {
     return (
-      <Result
-        status={"info"}
-        title={"Verify your email"}
-        subTitle={`Check email inbox for '${
-          getFormValues().email
-        }', and click 'Confirm Email' to complete sign up.`}
-      />
+      <>
+        <SimpleHead title="Sign up" />
+        <Result
+          status={"info"}
+          title={"Verify your email"}
+          subTitle={`Check email inbox for '${
+            getFormValues().email
+          }', and click 'Confirm Email' to complete sign up.`}
+        />
+      </>
     );
   }
 

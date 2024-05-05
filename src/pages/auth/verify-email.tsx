@@ -6,6 +6,7 @@ import { IServerResponse, IServerResponseError } from "@/types";
 import {
   axiosErrorToServerResponseErrors,
   handleApiRequestError,
+  synchronousSleep,
 } from "@/utils";
 import { useMutation } from "@tanstack/react-query";
 import { Spin, Result, Button } from "antd";
@@ -52,7 +53,7 @@ export default function VerifyEmail(props: IVerifyEmailProps) {
   // The subtitle of the result component
   const [subTitle, setSubTitle] = useState(
     props.success
-      ? "Your email has been verified successfully. Redirecting you to the product plans page..."
+      ? "Your email has been verified successfully. Redirecting you to the product plans page in a few seconds..."
       : props.errors?.map((x) => x.message).join(". ") ||
           "Your email has not been verified.",
   );
@@ -61,6 +62,8 @@ export default function VerifyEmail(props: IVerifyEmailProps) {
   useApiQuery({
     queryKey: ["signInWithToken"],
     queryFn: async () => {
+      await synchronousSleep(3000);
+
       const signInResponse = await services.api.authentication.signInWithToken({
         identifier: props.username!,
         token: props.signInToken!,
