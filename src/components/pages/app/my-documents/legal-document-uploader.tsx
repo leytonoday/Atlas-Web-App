@@ -104,10 +104,10 @@ export const LegalDocumentUploader = (props: ILegalDocumentUploaderProps) => {
         return Upload.LIST_IGNORE;
       }
 
-      // Check size of file. Max size is 10MB
+      // Check size of file. Max size is 5MB
       const fileSize = file.size / 1024 / 1024;
-      if (fileSize > 10) {
-        message.error("File must be smaller than 10MB!");
+      if (fileSize > 5) {
+        message.error("File must be smaller than 5MB!");
         return Upload.LIST_IGNORE;
       }
 
@@ -117,6 +117,8 @@ export const LegalDocumentUploader = (props: ILegalDocumentUploaderProps) => {
         message.error("File already uploaded!");
         return Upload.LIST_IGNORE;
       }
+
+      return false;
     },
     [],
   );
@@ -216,7 +218,7 @@ export const LegalDocumentUploader = (props: ILegalDocumentUploaderProps) => {
       >
         <Spin spinning={isCreateLegalDocumentsLoading}>
           <p className="text-sm text-gray-500">
-            Supports PDF, DOCX, TXT files up to 10MB each.
+            Supports PDF, DOCX, TXT files up to 5MB each.
           </p>
           <Upload {...uploadProps} fileList={fileList}>
             <Button icon={<AiOutlineUpload />}>Upload</Button>
